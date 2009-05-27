@@ -3,8 +3,8 @@ public class BooleanQuestion extends Question<Boolean>{
 	
 	private Boolean answer;
 	
-	public BooleanQuestion(String question, Boolean answer, int level, int id){
-		super(question,level,id);
+	public BooleanQuestion(String question, Boolean answer, int level){
+		super(question,level);
 		this.answer = answer;	
 	}
 	

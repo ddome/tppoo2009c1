@@ -4,8 +4,8 @@ public class SimpleTextQuestion extends Question<String> {
 
 	private String answer;
 	
-	public SimpleTextQuestion(String question, String answer, int level, int id){
-		super(question,level,id);
+	public SimpleTextQuestion(String question, String answer, int level){
+		super(question,level);
 		this.answer = answer;
 	}
 	
@@ -14,7 +14,7 @@ public class SimpleTextQuestion extends Question<String> {
 	}
 		
 	public boolean isCorrect(String answer){
-		return this.answer.equals(answer);
+		return this.answer.toLowerCase().equals(answer.toLowerCase());
 	}
 		
 }
