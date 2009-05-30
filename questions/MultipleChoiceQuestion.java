@@ -1,7 +1,7 @@
-package Quiz;
+package questions;
 import java.util.*; 
 
-public class MultipleChoiceQuestion extends ChoiceQuestion<Integer[]> {
+public class MultipleChoiceQuestion extends ChoiceQuestion{
 
 	private LinkedList<Integer> answers = new LinkedList<Integer>();
 	
@@ -18,6 +18,13 @@ public class MultipleChoiceQuestion extends ChoiceQuestion<Integer[]> {
 	public void addAnswer(int answer){
 		if( answer < choices.length + 1 )
 			this.answers.add(new Integer(answer));
+	}
+	
+	public boolean isCorrect(Object answers) {
+		if( answers instanceof Integer[] )
+			return isCorrect(answers);
+		else
+			return false;
 	}
 		
 	public boolean isCorrect(Integer answers[]){

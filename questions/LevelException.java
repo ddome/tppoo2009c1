@@ -1,4 +1,4 @@
-package Quiz;
+package questions;
 
 public class LevelException extends RuntimeException{
 

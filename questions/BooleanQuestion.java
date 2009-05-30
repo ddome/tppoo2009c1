@@ -1,5 +1,5 @@
-package Quiz;
-public class BooleanQuestion extends Question<Boolean>{
+package questions;
+public class BooleanQuestion extends Question{
 	
 	private Boolean answer;
 	
@@ -11,8 +11,16 @@ public class BooleanQuestion extends Question<Boolean>{
 	public void setAnswer(Boolean answer){
 		this.answer = answer;
 	}
-		
+	
+	public boolean isCorrect(Object answer){
+		if( answer instanceof Boolean )
+			return this.answer.equals(answer);
+		else
+			return false;
+	}
+	
 	public boolean isCorrect(Boolean answer){
 		return this.answer.equals(answer);
 	}
+	
 }
