@@ -1,6 +1,6 @@
-package Quiz;
+package questions;
 
-public abstract class ChoiceQuestion<T> extends Question<T> {
+public abstract class ChoiceQuestion extends Question {
 	
 	String choices[];
 	

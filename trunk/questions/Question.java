@@ -1,6 +1,6 @@
-package Quiz;
+package questions;
 
-public abstract class Question<T> {
+public abstract class Question{
 
 	private String question;
 	private int level;
@@ -34,5 +34,5 @@ public abstract class Question<T> {
 		this.level = level;
 	}
 	
-	public abstract boolean isCorrect(T answer);
+	public abstract boolean isCorrect(Object answer);
 }

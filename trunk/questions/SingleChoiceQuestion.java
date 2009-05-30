@@ -1,6 +1,6 @@
-package Quiz;
+package questions;
 
-public class SingleChoiceQuestion extends ChoiceQuestion<Integer>{
+public class SingleChoiceQuestion extends ChoiceQuestion{
 	
 	// answer not set
 	private Integer answer = -1;
@@ -14,7 +14,11 @@ public class SingleChoiceQuestion extends ChoiceQuestion<Integer>{
 		if( answer < this.choices.length)
 			this.answer = answer;
 	}
-		
+	
+	public boolean isCorrect(Object answer){
+		return this.answer.equals(answer);
+	}
+	
 	public boolean isCorrect(Integer answer){
 		return this.answer.equals(answer);
 	}
