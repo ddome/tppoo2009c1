@@ -1,22 +1,47 @@
-package questions;
-import java.util.*; 
+package questions; 
 
 public class Quiz {
 	
-	private ArrayList<Question> easy_questions   = new ArrayList<Question>();
-	private ArrayList<Question> medium_questions = new ArrayList<Question>();
-	private ArrayList<Question> hard_questions   = new ArrayList<Question>();
+	private Question quiz[];
+	private int index;
+	private int score;
 	
-	public Quiz(Question questions[] ) {
+	public Quiz(Question q[]) {
+		index = -1;
+		score = 0;
+		quiz = q;
+	}
+	
+	public String getNextQuestion() {
+		index++;
 		
-		for( Question q: questions ) {
-			if( q.getLevel() == Question.LEVEL_EASY )
-				this.easy_questions.add(q);
-			else if( q.getLevel() == Question.LEVEL_MEDIUM )
-				this.medium_questions.add(q);
-			else if(  q.getLevel() == Question.LEVEL_HARD  )
-				this.hard_questions.add(q);
+		if( index < quiz.length )
+			return quiz[index].getQuestion();
+		else
+			return null;
+	}
+		
+	public void setAnswer(Object answer) {
+		if( quiz[index].isCorrect(answer) )
+			score+=quiz[index].getScore();
+	}
+	
+	public String[] getQuestions() {	
+		String q[]  = new String[10];
+		
+		for(int i=0;i<quiz.length;i++ ) {
+			q[i] = quiz[i].getQuestion();
 		}		
+		return q;
+	}
+	
+	public void restart() {
+		index = -1;
+		score = 0;
+	}
+	
+	public int getScore() {
+		return score;
 	}
 	
 }
