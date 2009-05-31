@@ -4,8 +4,8 @@ public class SimpleNumberQuestion extends Question {
 
 	private Number answer;
 	
-	public SimpleNumberQuestion(String question, Number answer, int level){
-		super(question,level);
+	public SimpleNumberQuestion(String question, Number answer, int level, int score){
+		super(question,level,score);
 		this.answer = answer;
 	
 	}

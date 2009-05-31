@@ -5,8 +5,8 @@ public class SingleChoiceQuestion extends ChoiceQuestion{
 	// answer not set
 	private Integer answer = -1;
 	
-	public SingleChoiceQuestion(String question,String choices[],Integer answer, int level){
-		super(question,choices,level);
+	public SingleChoiceQuestion(String question,String choices[],Integer answer, int level,int score){
+		super(question,choices,level,score);
 		this.answer = answer;	
 	}
 	
