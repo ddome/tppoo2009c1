@@ -46,4 +46,9 @@ public abstract class Question{
 	}
 	
 	public abstract boolean isCorrect(Object answer);
+	
+	public String toString(){
+		return this.question;
+	}
+	
 }

@@ -12,11 +12,11 @@ public class Quiz {
 		quiz = q;
 	}
 	
-	public String getNextQuestion() {
+	public Question getNextQuestion() {
 		index++;
 		
 		if( index < quiz.length )
-			return quiz[index].getQuestion();
+			return quiz[index];
 		else
 			return null;
 	}
