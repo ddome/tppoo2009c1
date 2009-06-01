@@ -14,14 +14,14 @@ public class prueba {
 		
 		BooleanQuestion q1 = new BooleanQuestion("Peron es gay?", true, Question.LEVEL_EASY,10);
 		SimpleTextQuestion q2 = new SimpleTextQuestion("Presidente de Argentina", "Peron", Question.LEVEL_EASY,10);
-		SimpleNumberQuestion q3 = new SimpleNumberQuestion("Numero de trabas que se comio Peron",455,Question.LEVEL_EASY,2);
-		SingleChoiceQuestion q4 = new SingleChoiceQuestion("Que tan gay era Peron?", choices1,1, Question.LEVEL_EASY,4 );
-		MultipleChoiceQuestion q5 = new MultipleChoiceQuestion("Esposas de Peron",choices2, answers, Question.LEVEL_EASY,5 );
-		BooleanQuestion q6 = new BooleanQuestion("Peron es gay?", true, Question.LEVEL_EASY,6);
-		SimpleTextQuestion q7 = new SimpleTextQuestion("Presidente de Argentina", "Peron", Question.LEVEL_EASY,4);
-		SimpleNumberQuestion q8 = new SimpleNumberQuestion("Numero de trabas que se comio Peron",455,Question.LEVEL_EASY,6);
-		SingleChoiceQuestion q9 = new SingleChoiceQuestion("Que tan gay era Peron?", choices1,1, Question.LEVEL_EASY,7 );
-		MultipleChoiceQuestion q10 = new MultipleChoiceQuestion("Esposas de Peron",choices2, answers, Question.LEVEL_EASY,2 );	
+		SimpleNumberQuestion q3 = new SimpleNumberQuestion("Numero de trabas que se comio Peron",455,Question.LEVEL_EASY,10);
+		SingleChoiceQuestion q4 = new SingleChoiceQuestion("Que tan gay era Peron?", choices1,1, Question.LEVEL_EASY,10 );
+		MultipleChoiceQuestion q5 = new MultipleChoiceQuestion("Esposas de Peron",choices2, answers, Question.LEVEL_EASY,10 );
+		BooleanQuestion q6 = new BooleanQuestion("Peron es gay?", true, Question.LEVEL_EASY,10);
+		SimpleTextQuestion q7 = new SimpleTextQuestion("Presidente de Argentina", "Peron", Question.LEVEL_EASY,10);
+		SimpleNumberQuestion q8 = new SimpleNumberQuestion("Numero de trabas que se comio Peron",455,Question.LEVEL_EASY,10);
+		SingleChoiceQuestion q9 = new SingleChoiceQuestion("Que tan gay era Peron?", choices1,1, Question.LEVEL_EASY,10 );
+		MultipleChoiceQuestion q10 = new MultipleChoiceQuestion("Esposas de Peron",choices2, answers, Question.LEVEL_EASY,10 );	
 		
 		int pos = 0;
 		qarray[pos++] = q1;
@@ -38,7 +38,9 @@ public class prueba {
 		Questionnaire preguntas = new Questionnaire(qarray);
 		Quiz quiz = preguntas.generateQuiz(Question.LEVEL_EASY);
 		
-		System.out.println(quiz.getNextQuestion());
+		Question q;
+		System.out.println(q = quiz.getNextQuestion());
+		System.out.println(q.getClass() );
 		quiz.setAnswer(true);
 		System.out.println(quiz.getNextQuestion());
 		quiz.setAnswer("Peron");
