@@ -5,15 +5,16 @@ public class Quiz {
 	private Question quiz[];
 	private int index;
 	private int score;
+	private boolean answers[];
 	
 	public Quiz(Question q[]) {
-		index = -1;
+		index = 0;
 		score = 0;
 		quiz = q;
+		answers = new boolean[quiz.length];
 	}
 	
-	public Question getNextQuestion() {
-		index++;
+	public Question getActualQuestion() {
 		
 		if( index < quiz.length )
 			return quiz[index];
@@ -21,9 +22,15 @@ public class Quiz {
 			return null;
 	}
 		
-	public void setAnswer(Object answer) {
-		if( quiz[index].isCorrect(answer) )
+	public void answerActualQuestion(Object answer) {
+		if( quiz[index].isCorrect(answer) ) {
 			score+=quiz[index].getScore();
+			answers[index] = true;
+		}
+		else
+			answers[index] = false;
+			
+		index++;
 	}
 	
 	public String[] getQuestions() {	
@@ -35,8 +42,13 @@ public class Quiz {
 		return q;
 	}
 	
+	public boolean[] getAnswers() {			
+	
+		return answers;
+	}
+	
 	public void restart() {
-		index = -1;
+		index = 0;
 		score = 0;
 	}
 	

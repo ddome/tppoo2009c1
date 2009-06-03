@@ -15,23 +15,44 @@ public abstract class Question{
 		this.score = score;
 		
 		if( level == LEVEL_EASY || level == LEVEL_MEDIUM || level == LEVEL_HARD )
-			this.level    = level;
+			this.level = level;
 		else
 			throw new LevelException("Nivel incorrecto");
+	}
+	
+	/* Metodo a implementar, depende de cada tipo de pregunta */
+	public abstract boolean isCorrect(Object answer);
+	
+	public int hashCode(){
+		return question.hashCode();
+	}
+	
+	public boolean equals(Object q){
+		if( !(q instanceof Question) )
+			return false;
+		else {
+			if( ((Question)q).question == this.question )
+				return true;
+			else
+				return false;
+		}
 	}
 	
 	public String getQuestion() {
 		return question;
 	}
-	
-	
-	
 	public void setQuestion(String question) {
 		this.question = question;
 	}
 	
 	public int getLevel() {
 		return level;
+	}
+	public void setLevel(int level) {
+		if( level == LEVEL_EASY || level == LEVEL_MEDIUM || level == LEVEL_HARD )
+			this.level = level;
+		else
+			throw new LevelException("Nivel incorrecto");
 	}
 	
 	public int getScore() {
@@ -40,12 +61,6 @@ public abstract class Question{
 	public void setScore(int score) {
 		this.score = score;
 	}
-	
-	public void setLevel(int level) {
-		this.level = level;
-	}
-	
-	public abstract boolean isCorrect(Object answer);
 	
 	public String toString(){
 		return this.question;
