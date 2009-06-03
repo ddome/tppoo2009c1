@@ -18,13 +18,18 @@ public class Questionnaire {
 				this.medium_questions.add(q);
 			else if(  q.getLevel() == Question.LEVEL_HARD  )
 				this.hard_questions.add(q);
-		}		
+		}
+		
+		Collections.shuffle(easy_questions);
+		Collections.shuffle(medium_questions);
+		Collections.shuffle(hard_questions);
+		
 	}
 	
 	public Quiz generateQuiz(int level) throws LevelException {
 		
 		Question q[] = new Question[QUESTIONS_NUMBER];
-		ArrayList<Question> list;
+		List<Question> list;
 		
 		switch(level) {
 		
@@ -44,6 +49,9 @@ public class Questionnaire {
 		for(int i=0;i<QUESTIONS_NUMBER;i++) {
 			q[i] = list.get(i);
 		}
+		
+		Collections.shuffle(list);
+		
 		return new Quiz(q);			
 	}
 	
