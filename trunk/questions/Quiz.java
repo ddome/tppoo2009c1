@@ -6,14 +6,14 @@ public class Quiz {
 	private int index;
 	private int score;
 	private boolean answers[];
-	private String player;
+	private String user;
 	
-	public Quiz(String player,Question q[]) {
+	public Quiz(String user,Question q[]) {
 		index = 0;
 		score = 0;
 		quiz = q;
 		answers = new boolean[quiz.length];
-		this.player = player;
+		this.user = user;
 	}
 	
 	public Question getActualQuestion() {
