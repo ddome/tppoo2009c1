@@ -3,21 +3,27 @@ import java.util.*;
 
 public class Questionnaire {
 	
-	private ArrayList<Question> easy_questions   = new ArrayList<Question>();
-	private ArrayList<Question> medium_questions = new ArrayList<Question>();
-	private ArrayList<Question> hard_questions   = new ArrayList<Question>();
+	private LinkedList<Question> easy_questions   = new LinkedList<Question>();
+	private LinkedList<Question> medium_questions = new LinkedList<Question>();
+	private LinkedList<Question> hard_questions   = new LinkedList<Question>();
 	
 	public static final int QUESTIONS_NUMBER = 10;
 	
 	public Questionnaire(Question questions[] ) {
+				
+		switch(level) {
 		
-		for( Question q: questions ) {
-			if( q.getLevel() == Question.LEVEL_EASY )
-				this.easy_questions.add(q);
-			else if( q.getLevel() == Question.LEVEL_MEDIUM )
-				this.medium_questions.add(q);
-			else if(  q.getLevel() == Question.LEVEL_HARD  )
-				this.hard_questions.add(q);
+		case(Question.LEVEL_EASY ):
+			this.easy_questions.add(q);
+			break;
+		case(Question.LEVEL_MEDIUM):
+			this.medium_questions.add(q);
+			break;
+		case(Question.LEVEL_HARD):
+			this.hard_questions.add(q);
+			break;
+		default: 
+			throw new LevelException();		
 		}
 		
 		Collections.shuffle(easy_questions);
@@ -26,7 +32,7 @@ public class Questionnaire {
 		
 	}
 	
-	public Quiz generateQuiz(int level) throws LevelException {
+	public Quiz generateQuiz(String user,int level) throws LevelException {
 		
 		Question q[] = new Question[QUESTIONS_NUMBER];
 		List<Question> list;
@@ -50,7 +56,7 @@ public class Questionnaire {
 			q[i] = list.get(i);
 		}
 		
-		Collections.shuffle(list);
+		Collections.shuffle(user,list);
 		
 		return new Quiz(q);			
 	}
