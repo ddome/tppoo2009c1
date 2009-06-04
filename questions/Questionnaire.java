@@ -11,20 +11,23 @@ public class Questionnaire {
 	
 	public Questionnaire(Question questions[] ) {
 				
-		switch(level) {
-		
-		case(Question.LEVEL_EASY ):
-			this.easy_questions.add(q);
-			break;
-		case(Question.LEVEL_MEDIUM):
-			this.medium_questions.add(q);
-			break;
-		case(Question.LEVEL_HARD):
-			this.hard_questions.add(q);
-			break;
-		default: 
-			throw new LevelException();		
+		for( Question q: questions ) {
+			switch(q.getLevel()) {
+			
+			case(Question.LEVEL_EASY ):
+				this.easy_questions.add(q);
+				break;
+			case(Question.LEVEL_MEDIUM):
+				this.medium_questions.add(q);
+				break;
+			case(Question.LEVEL_HARD):
+				this.hard_questions.add(q);
+				break;
+			default: 
+				throw new LevelException();		
+			}
 		}
+
 		
 		Collections.shuffle(easy_questions);
 		Collections.shuffle(medium_questions);
@@ -56,9 +59,9 @@ public class Questionnaire {
 			q[i] = list.get(i);
 		}
 		
-		Collections.shuffle(user,list);
+		Collections.shuffle(list);
 		
-		return new Quiz(q);			
+		return new Quiz(user,q);			
 	}
 	
 	
