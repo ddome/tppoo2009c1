@@ -1,5 +1,9 @@
 package questions;
-import java.util.*; 
+import java.util.*;
+import java.io.File;
+import fileHandler.*;
+
+import fileHandler.FileParser;
 
 public class Questionnaire {
 	
@@ -8,20 +12,27 @@ public class Questionnaire {
 	private LinkedList<Question> hard_questions   = new LinkedList<Question>();
 	
 	public static final int QUESTIONS_NUMBER = 10;
-	
-	public Questionnaire(Question questions[] ) {
-				
+		
+	public Questionnaire( File questionsFile ) throws FileParserException,Exception{
+		
+		FileParser fd = new FileParser(questionsFile);
+		ArrayList<Question> questions = fd.readQuestions();
+		fd.close();
+
 		for( Question q: questions ) {
 			switch(q.getLevel()) {
 			
 			case(Question.LEVEL_EASY ):
-				this.easy_questions.add(q);
+				if( !(this.easy_questions.contains(q))  )
+					this.easy_questions.add(q);
 				break;
 			case(Question.LEVEL_MEDIUM):
-				this.medium_questions.add(q);
+				if( !this.medium_questions.contains(q)  )
+					this.medium_questions.add(q);
 				break;
 			case(Question.LEVEL_HARD):
-				this.hard_questions.add(q);
+				if( !this.hard_questions.contains(q)  )
+					this.hard_questions.add(q);
 				break;
 			default: 
 				throw new LevelException();		
@@ -37,8 +48,9 @@ public class Questionnaire {
 	
 	public Quiz generateQuiz(String user,int level) throws LevelException {
 		
-		Question q[] = new Question[QUESTIONS_NUMBER];
+		Question q[];
 		List<Question> list;
+		int size;
 		
 		switch(level) {
 		
@@ -54,8 +66,15 @@ public class Questionnaire {
 		default: 
 			throw new LevelException();		
 		}
+		
+		if( list.size() < QUESTIONS_NUMBER )
+			size = list.size();
+		else
+			size = QUESTIONS_NUMBER;
+		
+		q =  new Question[size];
 				
-		for(int i=0;i<QUESTIONS_NUMBER;i++) {
+		for(int i=0;i<size;i++) {
 			q[i] = list.get(i);
 		}
 		
@@ -63,6 +82,29 @@ public class Questionnaire {
 		
 		return new Quiz(user,q);			
 	}
+	
+	public Question[] getQuestionList(int level){
+		
+		LinkedList<Question> list;
+		
+		switch(level) {
+			case(Question.LEVEL_EASY ):
+				list = easy_questions;
+				break;
+			case(Question.LEVEL_MEDIUM):
+				list = medium_questions;
+				break;
+			case(Question.LEVEL_HARD):
+				list = hard_questions;
+				break;
+			default: 
+				throw new LevelException();		
+		}
+	
+		return (Question[])list.toArray();
+	}
+
+	
 	
 	
 }

@@ -1,7 +1,9 @@
-package FileParser;
+package fileHandler;
 
 public class FileParserException extends Exception{
 	
+	private static final long serialVersionUID = 1L;
+
 	public FileParserException(){
 		
 	}
