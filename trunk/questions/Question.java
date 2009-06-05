@@ -31,10 +31,10 @@ public abstract class Question{
 		if( !(q instanceof Question) )
 			return false;
 		else {
-			if( ((Question)q).question == this.question )
-				return true;
-			else
+			if( !((Question)q).question.equals(this.question) )
 				return false;
+			else
+				return true;
 		}
 	}
 	

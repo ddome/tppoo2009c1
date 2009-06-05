@@ -22,7 +22,7 @@ public class MultipleChoiceQuestion extends ChoiceQuestion{
 	
 	public boolean isCorrect(Object answers) {
 		if( answers instanceof Integer[] )
-			return isCorrect(answers);
+			return isCorrect((Integer[])answers);
 		else
 			return false;
 	}

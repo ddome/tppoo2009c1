@@ -1,8 +1,10 @@
 import questions.*;
+import java.io.*;
+import fileHandler.*;
 
 public class prueba {
 
-	public static void main( String[] args) {
+	public static void main( String[] args) throws Exception,FileParserException{
 	
 		String choices1[] = {"uno","dos","tres"};
 		String choices2[] = {"Evita","Madona","Isabel"};
@@ -34,19 +36,16 @@ public class prueba {
 		qarray[pos++] = q9;
 		qarray[pos++] = q10;
 				
-		Questionnaire preguntas = new Questionnaire(qarray);
+		Questionnaire preguntas = new Questionnaire(new File("/Users/damian/Desktop/hola"));
 		Quiz quiz = preguntas.generateQuiz("damian",Question.LEVEL_EASY);
 		
-		System.out.println(quiz.getActualQuestion());
-		quiz.answerActualQuestion(true);
-		System.out.println(quiz.getActualQuestion());
-		quiz.answerActualQuestion(true);
-		System.out.println(quiz.getActualQuestion());
-		quiz.answerActualQuestion(true);
-		System.out.println(quiz.getActualQuestion());
-		quiz.answerActualQuestion(true);
-		System.out.println(quiz.getActualQuestion());
-		quiz.answerActualQuestion(true);
+		
+		
+		while( quiz.questionExists() ) {
+			System.out.println(quiz.getActualQuestion());
+			quiz.answerActualQuestion(true);
+		}
+		
 		
 	}
 		

@@ -1,25 +1,24 @@
-package FileParser;
+package fileHandler;
 
 import java.util.Scanner;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.ArrayList;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 
 import questions.*;
-import questions.ChoiceQuestion.*;
 
 public class FileParser{
 
 	private BufferedReader fileBuffer;
 	
-	public FileParser(String pathName)throws Exception{
+	public FileParser(File file)throws Exception{
 		try{
-			fileBuffer = new BufferedReader(new FileReader(pathName));
+			fileBuffer = new BufferedReader(new FileReader(file));
 		}catch(FileNotFoundException e){
 			throw new FileParserException("Error al intentar abrir el archivo: "+e.getMessage());
 		}
@@ -33,13 +32,13 @@ public class FileParser{
 		}
 	}
 	
-	public List<Question> readQuestions() throws Exception{
+	public ArrayList<Question> readQuestions() throws Exception{
 		String line,question=null;
 		Scanner scanner;
-		List<Question> QuestionList= new ArrayList<Question>();
-		List<String> options = new ArrayList<String>();
-		List<String> answers = new ArrayList<String>();
-		int questionType,i=0,j=0,score=0,level=0,infoLine=0,correctAnswers=1,posibleAnswers=1;
+		ArrayList<Question> QuestionList= new ArrayList<Question>();
+		ArrayList<String> options = new ArrayList<String>();
+		ArrayList<String> answers = new ArrayList<String>();
+		int questionType,i=0,score=0,level=0,infoLine=0,correctAnswers=1,posibleAnswers=1;
 		
 		try{
 			for(; (line=fileBuffer.readLine())!=null;infoLine=0,options.clear(),answers.clear()){
