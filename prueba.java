@@ -36,7 +36,7 @@ public class prueba {
 		qarray[pos++] = q9;
 		qarray[pos++] = q10;
 				
-		Questionnaire preguntas = new Questionnaire(new File("/Users/damian/Desktop/hola"));
+		Questionnaire preguntas = new Questionnaire(new File("/Users/damian/Desktop/hola"),null);
 		Quiz quiz = preguntas.generateQuiz("damian",Question.LEVEL_EASY);
 		
 		

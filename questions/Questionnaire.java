@@ -12,12 +12,17 @@ public class Questionnaire {
 	private LinkedList<Question> hard_questions   = new LinkedList<Question>();
 	
 	public static final int QUESTIONS_NUMBER = 10;
+	
+	private File rankingFile;
+	private File questionsFile;
 		
-	public Questionnaire( File questionsFile ) throws FileParserException,Exception{
+	public Questionnaire( File questionsFile, File rankingFile ) throws FileParserException,Exception{
 		
 		FileParser fd = new FileParser(questionsFile);
 		ArrayList<Question> questions = fd.readQuestions();
 		fd.close();
+		this.rankingFile = rankingFile;
+		this.questionsFile = questionsFile;
 
 		for( Question q: questions ) {
 			switch(q.getLevel()) {
@@ -80,7 +85,7 @@ public class Questionnaire {
 		
 		Collections.shuffle(list);
 		
-		return new Quiz(user,q);			
+		return new Quiz(user,q,rankingFile);			
 	}
 	
 	public Question[] getQuestionList(int level){
