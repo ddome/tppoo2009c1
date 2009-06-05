@@ -1,4 +1,8 @@
-package questions; 
+package questions;
+
+import player.*;
+
+import java.io.File;
 
 public class Quiz {
 	
@@ -7,13 +11,15 @@ public class Quiz {
 	private int score;
 	private boolean answers[];
 	private String user;
-	
-	public Quiz(String user,Question q[]) {
+	Ranking ranking;
+		
+	public Quiz(String user,Question q[],File rankingFile) {
 		index = 0;
 		score = 0;
 		quiz = q;
 		answers = new boolean[quiz.length];
 		this.user = user;
+		ranking = new Ranking(rankingFile);
 	}
 	
 	public Question getActualQuestion() {
@@ -36,7 +42,7 @@ public class Quiz {
 				
 			index++;	
 			if( index == quiz.length  ) {
-				
+				ranking.saveScore(user,score);
 			}
 		}		
 	}
