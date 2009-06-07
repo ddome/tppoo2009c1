@@ -1,12 +1,14 @@
 import questions.*;
 import java.io.*;
+
 import fileHandler.*;
+import java.io.FileNotFoundException;
 
 public class prueba {
 
 	public static void main( String[] args) throws Exception,FileParserException{
 	
-		String choices1[] = {"uno","dos","tres"};
+		/*String choices1[] = {"uno","dos","tres"};
 		String choices2[] = {"Evita","Madona","Isabel"};
 		Integer answers[] = {1,3};
 		Question qarray[] = new Question[10];
@@ -34,9 +36,22 @@ public class prueba {
 		qarray[pos++] = q7;
 		qarray[pos++] = q8;
 		qarray[pos++] = q9;
-		qarray[pos++] = q10;
+		qarray[pos++] = q10;*/
+		File file1=null;
+		File file2=null;
+		
+		file1=new File("hola");
+		if(!file1.exists())
+			file1.createNewFile();
+		
+		file2=new File("chau");
+		if(!file2.exists()){
+			file2.createNewFile();
+			ObjectInputStream rFile = new ObjectInputStream(new FileInputStream(file2));
+			rFile.close();
+		}
 				
-		Questionnaire preguntas = new Questionnaire(new File("/Users/damian/Desktop/hola"),null);
+		Questionnaire preguntas = new Questionnaire(file1,file2);
 		Quiz quiz = preguntas.generateQuiz("damian",Question.LEVEL_EASY);
 		
 		

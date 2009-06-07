@@ -100,6 +100,17 @@ public class FileParser{
 		return QuestionList;
 	}
 	
+	private String ReadLine()throws Exception{
+		String line;
+		while((line=fileBuffer.readLine())!=null && line.trim().length()!=0)
+			;
+			
+		if(line==null)
+			return null;
+		else
+			return line;
+	}
+	
 	private Question BuildQuestion(int questionType,String question,List<String> options,List<String> answer,int level,int score)throws Exception{
 		Question questionRet=null;
 		

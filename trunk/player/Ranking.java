@@ -46,7 +46,7 @@ public class Ranking {
 				throw new LevelException();		
 		}
 		
-		for(i=0;ranking[i]!=null && i<MAX_TOP_PLAYERS;i++){
+		for(i=0;i<MAX_TOP_PLAYERS && ranking[i]!=null;i++){
 			if( ranking[i]!=null && (ranking[i].getScore() < game.getScore()) ) {
 				aux=game;
 				game=ranking[i];
@@ -91,7 +91,7 @@ public class Ranking {
 					throw new LevelException();		
 				}
 				i=0;
-				while(ranking[i]!=null){
+				while(i<MAX_TOP_PLAYERS && ranking[i]!=null){
 					wFile.writeInt(ranking[i].getLevel());
 					wFile.writeInt(ranking[i].getScore());
 					wFile.writeObject(ranking[i].getUser());
@@ -107,7 +107,12 @@ public class Ranking {
 	}
 	
 	private void ReadScores() throws Exception{
-		ObjectInputStream rFile = new ObjectInputStream(new FileInputStream(rankingFile));
+		ObjectInputStream rFile;
+		try{
+			rFile = new ObjectInputStream(new FileInputStream(rankingFile));
+		}catch(EOFException e){
+			return;
+		}
 		int level,i=0,j=0,k=0,score;
 		String user;
 		boolean exit=false;
@@ -119,7 +124,6 @@ public class Ranking {
 				
 				switch(level) {
 					case(Question.LEVEL_EASY ):
-						System.out.println("Leyendo");
 						ranking_easy[i] = new Game();
 						player = ranking_easy[i];
 						i++;
@@ -149,15 +153,11 @@ public class Ranking {
 			}
 			
 		}catch(EOFException e){
-
+			
 		}finally{
 			rFile.close();
 		}
 	}
-	
-	
-	
-	
 	
 }
 
