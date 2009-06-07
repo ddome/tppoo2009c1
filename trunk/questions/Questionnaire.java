@@ -3,6 +3,8 @@ import java.util.*;
 import java.io.File;
 import fileHandler.*;
 
+import player.*;
+
 import fileHandler.FileParser;
 
 public class Questionnaire {
@@ -16,7 +18,7 @@ public class Questionnaire {
 	private File rankingFile;
 	private File questionsFile;
 		
-	public Questionnaire( File questionsFile, File rankingFile ) throws FileParserException,Exception{
+	public Questionnaire( File questionsFile, File rankingFile ) throws RankingFileException,FileParserException,Exception{
 		
 		FileParser fd = new FileParser(questionsFile);
 		ArrayList<Question> questions = fd.readQuestions();
@@ -51,7 +53,7 @@ public class Questionnaire {
 		
 	}
 	
-	public Quiz generateQuiz(String user,int level) throws LevelException {
+	public Quiz generateQuiz(String user,int level) throws RankingFileException,LevelException,Exception {
 		
 		Question q[];
 		List<Question> list;
@@ -113,3 +115,4 @@ public class Questionnaire {
 	
 	
 }
+

@@ -13,7 +13,7 @@ public class Quiz {
 	private Game game;
 	Ranking ranking;
 		
-	public Quiz(String user,int level,Question q[],File rankingFile) {
+	public Quiz(String user,int level,Question q[],File rankingFile)throws RankingFileException,Exception {
 		index = 0;
 		score = 0;
 		quiz = q;
@@ -30,7 +30,7 @@ public class Quiz {
 			return null;
 	}
 		
-	public void answerActualQuestion(Object answer) {
+	public void answerActualQuestion(Object answer)throws RankingFileException,Exception {
 		
 		if( index < quiz.length ) {
 			if( quiz[index].isCorrect(answer) ) {
@@ -76,3 +76,4 @@ public class Quiz {
 	}
 	
 }
+

@@ -4,7 +4,9 @@ public class Game {
 	private String user;
 	private int score;
 	private int level;
-
+	public Game(){
+		
+	}
 	public Game(String user,int level) {
 		
 		this.user = user;
