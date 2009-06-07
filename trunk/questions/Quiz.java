@@ -10,16 +10,16 @@ public class Quiz {
 	private int index;
 	private int score;
 	private boolean answers[];
-	private String user;
+	private Game game;
 	Ranking ranking;
 		
-	public Quiz(String user,Question q[],File rankingFile) {
+	public Quiz(String user,int level,Question q[],File rankingFile) {
 		index = 0;
 		score = 0;
 		quiz = q;
 		answers = new boolean[quiz.length];
-		this.user = user;
 		ranking = new Ranking(rankingFile);
+		game = new Game(user,level);
 	}
 	
 	public Question getActualQuestion() {
@@ -42,7 +42,8 @@ public class Quiz {
 				
 			index++;	
 			if( index == quiz.length  ) {
-				ranking.saveScore(user,score);
+				game.setScore(score);
+				ranking.saveScore(game);
 			}
 		}		
 	}

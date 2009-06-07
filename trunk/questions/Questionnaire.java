@@ -85,7 +85,7 @@ public class Questionnaire {
 		
 		Collections.shuffle(list);
 		
-		return new Quiz(user,q,rankingFile);			
+		return new Quiz(user,level,q,rankingFile);			
 	}
 	
 	public Question[] getQuestionList(int level){
