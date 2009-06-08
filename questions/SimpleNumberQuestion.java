@@ -14,6 +14,10 @@ public class SimpleNumberQuestion extends Question {
 		this.answer = answer;
 	}
 	
+	public Number getAnswer(){
+		return this.answer;
+	}
+	
 	public boolean isCorrect(Object answer){
 		if( answer instanceof Number  )
 			return this.answer.equals(answer);
