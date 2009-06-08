@@ -13,6 +13,10 @@ public class SimpleTextQuestion extends Question {
 		this.answer = answer;
 	}
 	
+	public String getAnswer(){
+		return new String(this.answer);
+	}
+	
 	public boolean isCorrect(Object answer){
 		if( answer instanceof String ) 
 			return this.answer.toLowerCase().equals(((String)answer).toLowerCase());

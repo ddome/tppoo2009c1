@@ -12,6 +12,10 @@ public class BooleanQuestion extends Question{
 		this.answer = answer;
 	}
 	
+	public Boolean getAnswer(){
+		return this.answer;
+	}
+	
 	public boolean isCorrect(Object answer){
 		if( answer instanceof Boolean )
 			return this.answer.equals(answer);

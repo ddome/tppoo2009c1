@@ -25,13 +25,12 @@ import java.util.*;
 public class QuestionEditPanel extends JPanel {
 
 	private defaultButton btnNewQuestion = null;
-	private JComboBox cbQuestions = null;
+	private JList liQuestions = null;
 	private JLabel lblSelectQuestion = null;
 	private defaultButton btnEdit = null;
 	private defaultButton btnDelete = null;
 	private defaultButton btnSaveChanges = null;
-	private JPanel questionPanel = null;
-	
+	private JScrollPane qListScrollPane= null;
 	private Questionnaire q = null;
 	private List<String> questionsText =null;
 	private List<Question> questions = null;
@@ -44,18 +43,32 @@ public class QuestionEditPanel extends JPanel {
 		initialize();
 	}
 	
+	private Question getSelectedQuestion(){
+		int selectedIndex = this.liQuestions.getSelectedIndex();
+		return selectedIndex == -1 ? null: this.questions.get(selectedIndex);
+	}
+	
 	public void DeleteQuestionClicked(){
-		int confirm = JOptionPane.showConfirmDialog(this, 
-									 "Seguro que desea eliminar la pregunta?", 
-									 "Eliminar Preguntas",
-									 JOptionPane.OK_CANCEL_OPTION,
-									 JOptionPane.WARNING_MESSAGE,  
-									 null);
-		// Si confirmo el borrado
-		if(confirm == 1){
-			int index = cbQuestions.getSelectedIndex();
-			//q.DeleteQuestion(questions[index]);
+		int selectedIndex = liQuestions.getSelectedIndex();
+		/* Valido que el usuario seleccione una pregunta
+		*/
+		if(selectedIndex == -1){
+			JOptionPane.showMessageDialog(this, "Debe seleccionar la pregunta a eliminar.", "Eliminar Pregunta",JOptionPane.OK_OPTION, null);
 		}
+		else{
+			int confirm = JOptionPane.showConfirmDialog(this, 
+					 "Seguro que desea eliminar la pregunta?", 
+					 "Eliminar Preguntas",
+					 JOptionPane.OK_CANCEL_OPTION,
+					 JOptionPane.WARNING_MESSAGE,  
+					 null);
+			// Si confirmo el borrado
+			if(confirm == 1){
+				q.deleteQuestion(getSelectedQuestion());
+			}
+		}
+			
+
 	}
 	
 	public void EditQuestionClicked(){
@@ -71,6 +84,7 @@ public class QuestionEditPanel extends JPanel {
 	public void  SaveChangesClicked(){
 		
 	}
+	
 	/**
 	 * This method initializes this
 	 * 
@@ -80,11 +94,12 @@ public class QuestionEditPanel extends JPanel {
 		this.setLayout(null);
 		this.setSize(650,400);
 		this.add(getNewQuestionButton(), null);
-		this.add(this.getQuestionsComboBox(), null);
+		this.add(this.getQuestionsList(), null);
 		this.add(this.getSelectQuestionLabel());
 		this.add(this.getEditButton());
 		this.add(this.getDeleteButton());
 		this.add(this.getSaveChangesButton());
+		this.add(this.getQuestionsListScroll(liQuestions));
 	}
 	
 	private defaultButton getNewQuestionButton(){
@@ -95,7 +110,7 @@ public class QuestionEditPanel extends JPanel {
 		return btnNewQuestion;
 	}
 		
-	private JComboBox getQuestionsComboBox(){
+	private JList getQuestionsList(){
 		questionsText = new LinkedList<String>();
 		questions = new LinkedList<Question>();
 		for(Question question: this.q.getQuestionList(Question.LEVEL_EASY)){
@@ -107,10 +122,16 @@ public class QuestionEditPanel extends JPanel {
 		
 		String[] questionArray = new String[questionsText.size()];
 		questionArray = questionsText.toArray(questionArray);
-		this.cbQuestions = new JComboBox(questionArray);
-		this.cbQuestions.setBounds(20, 80, 575, 25);
-		this.cbQuestions.setVisible(true);
-		return this.cbQuestions;
+		this.liQuestions = new JList(questionArray);
+		this.liQuestions.setBounds(20, 80, 575, 250);
+		this.liQuestions.setVisible(true);
+		return this.liQuestions;
+	}
+	
+	private JScrollPane getQuestionsListScroll(JList list){
+		qListScrollPane = new JScrollPane(list);
+		qListScrollPane.setBounds(20, 80, 575, 250);
+		return qListScrollPane;
 	}
 	
 	private JLabel getSelectQuestionLabel(){
@@ -161,17 +182,5 @@ public class QuestionEditPanel extends JPanel {
 			btnSaveChanges.setEnabled(false);
 		}
 		return btnSaveChanges;
-	}
-	
-	private JPanel getQuestionPanel(){
-		questionPanel = getSpecificQuestionPanel();
-		questionPanel.setLocation(0,115);
-
-		return (JPanel)questionPanel;
-	}
-	
-	private JPanel getSpecificQuestionPanel(){
-		JPanel panel = new JPanel();
-		return panel;
 	}
 }
