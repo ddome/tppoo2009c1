@@ -1,20 +1,9 @@
-/*
- * Creado el 07/06/2009
- *
- * TODO Para cambiar la plantilla de este archivo generado, vaya a
- * Ventana - Preferencias - Java - Estilo de código - Plantillas de código
- */
 package UI;
 
 import javax.swing.*;
 
 import questions.*;
-/**
- * @author Carlos
- *
- * TODO Para cambiar la plantilla de este comentario generado, vaya a
- * Ventana - Preferencias - Java - Estilo de código - Plantillas de código
- */
+
 public class SimpleTextQuestionEditUI extends JPanel {
 
 	private javax.swing.JPanel jContentPane = null;
@@ -40,6 +29,12 @@ public class SimpleTextQuestionEditUI extends JPanel {
 		this.question = question;
 		initialize();
 	}
+	
+	public Question getFinalQuestion(){
+		SimpleTextQuestion newQuestion;
+		newQuestion = new SimpleTextQuestion(getQuestion(), getAnswer(), 1, 1);
+		return (Question)newQuestion;
+	}
 
 	/**
 	 * This method initializes this
@@ -50,7 +45,7 @@ public class SimpleTextQuestionEditUI extends JPanel {
 		this.setSize(650, 350);
 		this.setLayout(null);
 		this.add(getQuestionTextBox(), null);
-		this.add(getJTextField(), null);
+		this.add(getAnswerTextBox(), null);
 	}
 	
 	private JTextField getQuestionTextBox(){
@@ -70,7 +65,7 @@ public class SimpleTextQuestionEditUI extends JPanel {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */    
-	private JTextField getJTextField() {
+	private JTextField getAnswerTextBox() {
 		if (txtAnswer == null) {
 			txtAnswer = new JTextField();
 			txtAnswer.setBounds(19, 51, 603, 28);
@@ -79,5 +74,13 @@ public class SimpleTextQuestionEditUI extends JPanel {
 			}			
 		}
 		return txtAnswer;
+	}
+	
+	private String getQuestion(){
+		return getQuestionTextBox().getText();
+	}
+	
+	private String getAnswer(){
+		return getAnswerTextBox().getText();
 	}
  } 

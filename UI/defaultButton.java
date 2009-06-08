@@ -16,8 +16,6 @@ import javax.swing.JButton;
  */
 public class defaultButton extends JButton {
 
-	private javax.swing.JPanel jContentPane = null;
-
 	/**
 	 * This is the default constructor
 	 */
