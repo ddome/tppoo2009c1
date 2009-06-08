@@ -45,7 +45,7 @@ public class FileParser{
 				scanner = new Scanner(line);
 				questionType=scanner.nextInt();
 				if(scanner.hasNext())
-					throw new FileParserException("Archivo de preguntas mal formado.");
+					throw new FileParserException("1- Archivo de preguntas mal formado.");
 				scanner.close();
 				while( infoLine<8 && (line=ReadLine())!=null ){
 					scanner = new Scanner(line);
@@ -92,10 +92,13 @@ public class FileParser{
 					scanner.close();
 					infoLine++;
 				}
+				if(infoLine==8 || (infoLine==7 && line==null) )
 					QuestionList.add(BuildQuestion(questionType,question,options,answers,level,score));
+				else
+					throw new FileParserException("55- Archivo de preguntas mal formado.");
 			}
 		}catch(Exception e){
-			throw new FileParserException("Archivo mal formado: " + e.getMessage());
+			throw new FileParserException("Archivo mal formado");
 		}
 		return QuestionList;
 	}
@@ -181,6 +184,12 @@ public class FileParser{
 		boolean boolAnswer=false;
 		if( options.size()!=2 || answer.size()!=1 || score < 0 || level < 0 || level > 2 )
 			throw new FileParserException("14- Archivo de preguntas mal formado.");
+		
+		if( !options.get(0).toUpperCase().equals("VERDADERO") && !options.get(1).toUpperCase().equals("VERDADERO") )
+			throw new FileParserException("Archivo mal formado");
+		
+		if( !options.get(0).toUpperCase().equals("FALSO") && !options.get(1).toUpperCase().equals("FALSO") )
+			throw new FileParserException("Archivo mal formado");
 		
 		if(answer.get(0).toUpperCase().equals("VERDADERO"))
 			boolAnswer=true;
