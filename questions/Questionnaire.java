@@ -93,6 +93,7 @@ public class Questionnaire {
 	public Question[] getQuestionList(int level){
 		
 		LinkedList<Question> list;
+		Question[] questions;
 		
 		switch(level) {
 			case(Question.LEVEL_EASY ):
@@ -107,8 +108,9 @@ public class Questionnaire {
 			default: 
 				throw new LevelException();		
 		}
-	
-		return (Question[])list.toArray();
+		questions = new Question[list.size()+1];
+		questions = list.toArray(questions);
+		return questions;
 	}
 
 	

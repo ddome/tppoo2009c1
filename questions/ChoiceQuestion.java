@@ -19,5 +19,8 @@ public abstract class ChoiceQuestion extends Question {
 		return super.equals(o);
 	}
 	
+	public String[] getChoices(){
+		return choices;
+	}
 	
 }
