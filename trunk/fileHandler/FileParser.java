@@ -41,13 +41,13 @@ public class FileParser{
 		int questionType,i=0,score=0,level=0,infoLine=0,correctAnswers=1,posibleAnswers=1;
 		
 		try{
-			for(; (line=fileBuffer.readLine())!=null;infoLine=0,options.clear(),answers.clear()){
+			for(; (line=ReadLine())!=null;infoLine=0,options.clear(),answers.clear()){
 				scanner = new Scanner(line);
 				questionType=scanner.nextInt();
 				if(scanner.hasNext())
 					throw new FileParserException("Archivo de preguntas mal formado.");
 				scanner.close();
-				while( infoLine<8 && (line=fileBuffer.readLine())!=null ){
+				while( infoLine<8 && (line=ReadLine())!=null ){
 					scanner = new Scanner(line);
 					switch(infoLine){
 						case 0:	level=scanner.nextInt();
@@ -64,7 +64,7 @@ public class FileParser{
 								break;
 						case 4: options.add(line.trim());
 								for(i=1;i<posibleAnswers ;i++){
-									options.add(fileBuffer.readLine().trim());
+									options.add(ReadLine().trim());
 								}
 								break;
 						case 5:	line=line.trim();
@@ -72,7 +72,7 @@ public class FileParser{
 									throw new FileParserException("5- Archivo de preguntas mal formado.");
 								answers.add(line);
 								for(i=1;i<correctAnswers;i++){
-									line=fileBuffer.readLine().trim();
+									line=ReadLine().trim();
 									if(!options.contains(line))
 										throw new FileParserException("6- Archivo de preguntas mal formado.");
 									answers.add(line);
@@ -102,7 +102,7 @@ public class FileParser{
 	
 	private String ReadLine()throws Exception{
 		String line;
-		while((line=fileBuffer.readLine())!=null && line.trim().length()!=0)
+		while((line=fileBuffer.readLine())!=null && line.trim().length()==0)
 			;
 			
 		if(line==null)
