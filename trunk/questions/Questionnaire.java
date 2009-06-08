@@ -53,7 +53,7 @@ public class Questionnaire {
 		
 	}
 	
-	public Quiz generateQuiz(String user,int level) throws RankingFileException,LevelException,Exception {
+	public Quiz generateQuiz(String user,int level) throws LevelException,Exception {
 		
 		Question q[];
 		List<Question> list;
@@ -112,7 +112,75 @@ public class Questionnaire {
 		questions = list.toArray(questions);
 		return questions;
 	}
+	
+	/**
+	 * Borra una pregunta de la base de datos.
+	 * @param q Pregunta a borrar
+	 */
+	public void deleteQuestion(Question q) {
+		
+		LinkedList<Question> list;
+		
+		switch(q.getLevel()) {
+			case(Question.LEVEL_EASY ):
+				list = easy_questions;
+				break;
+			case(Question.LEVEL_MEDIUM):
+				list = medium_questions;
+				break;
+			default:
+				list = hard_questions;				
+		}		
+		
+		
+		for( Question q2: list ) {
+			
+			if( q2.equals(q)  ) {
+				list.remove(q2);
+				break;
+			}			
+		}
+		
+	}
+	
+	/**
+	 * Agrega una pregunta a la base de datos.
+	 * @param q La pregunta a agregar
+	 */
+	public void newQuestion(Question q) {
+		
+		LinkedList<Question> list;
+		
+		switch(q.getLevel()) {
+			case(Question.LEVEL_EASY ):
+				list = easy_questions;
+				break;
+			case(Question.LEVEL_MEDIUM):
+				list = medium_questions;
+				break;
+			default:
+				list = hard_questions;				
+		}
+		
+		list.add(q);
+		
+	}
 
+	/**
+	 * Modifica una pregunta de la base de datos.
+	 * @param org La pregunta original a modificar
+	 * @param mod La pregunta modificada
+	 */
+	public void modifyQuestion(Question org,Question mod) {
+		
+		LinkedList<Question> list;
+		
+		deleteQuestion(org);	
+		newQuestion(mod);
+		
+	}
+	
+	
 	
 	
 	
