@@ -26,7 +26,7 @@ public class QuestionParentPanel extends JPanel {
 		initialize();
 	}
 	
-	public void SetNextQuestion(){
+	public void SetNextQuestion() throws Exception{
 		if(this.questionPanel instanceof BooleanQuestionUI){
 			this.quiz.answerActualQuestion(((BooleanQuestionUI)this.questionPanel).getAnswer());
 		}
@@ -76,7 +76,13 @@ public class QuestionParentPanel extends JPanel {
 			btnNext.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					QuestionParentPanel parentPanel = (QuestionParentPanel)((Component)e.getSource()).getParent();
-					parentPanel.SetNextQuestion();
+					try{
+						parentPanel.SetNextQuestion();	
+					}
+					catch(Exception ex){
+						System.out.println(ex.getMessage());
+					}
+					
 				}
 			});
 		}		
@@ -84,13 +90,13 @@ public class QuestionParentPanel extends JPanel {
 	}
 	
 	private JPanel getQuestionPanel(){
+		
 		if(actualQuestion == null){
-			actualQuestion =quiz.getActualQuestion();
+			actualQuestion = quiz.getActualQuestion();
 		}
-		//if(actualQuestion != null){
-			questionPanel = getSpecificQuestionPanel();
-			questionPanel.setLocation(0,0);
-		//}
+		questionPanel = getSpecificQuestionPanel();
+		questionPanel.setLocation(0,0);
+		
 		return (JPanel)questionPanel;
 	}
 	

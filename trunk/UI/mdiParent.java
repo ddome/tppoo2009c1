@@ -81,12 +81,15 @@ public class mdiParent extends JFrame {
 		                    null,
 		                    null,
 		                    null);
-					
-					((mdiParent)parent).quiz = ((mdiParent)parent).q.generateQuiz(userName, level);
-					
-					QuestionParentPanel p = new QuestionParentPanel(((mdiParent)parent).quiz);
-					p.setSize(650,400);
-					addFrame(p, "Quiz!");
+					try{
+						((mdiParent)parent).quiz = ((mdiParent)parent).q.generateQuiz(userName, level);
+						QuestionParentPanel p = new QuestionParentPanel(((mdiParent)parent).quiz);
+						p.setSize(650,400);
+						((mdiParent)parent).addFrame(p, "Quiz!");
+					}
+					catch(Exception ex){
+						System.out.println(ex.getMessage());
+					}		
 				}
 				
 				public int getDifficultyCode(String difficulty){
