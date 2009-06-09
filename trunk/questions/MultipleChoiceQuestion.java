@@ -40,4 +40,11 @@ public class MultipleChoiceQuestion extends ChoiceQuestion{
 		
 		return ret;
 	}
+	
+	public Integer[] getAnswers(){
+		
+		Integer aux[] = new Integer[(answers.size()+1)];	
+		aux = answers.toArray(aux);
+		return aux;
+	}
 }

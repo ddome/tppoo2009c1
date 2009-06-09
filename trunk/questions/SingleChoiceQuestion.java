@@ -22,4 +22,8 @@ public class SingleChoiceQuestion extends ChoiceQuestion{
 	public boolean isCorrect(Integer answer){
 		return this.answer.equals(answer);
 	}
+	
+	public Integer getAnswer(){
+		return answer;
+	}
 }
