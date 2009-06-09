@@ -45,10 +45,23 @@ public class QuestionSaver {
 	
 	private void SaveQuestionsLevel(Question[] questions)throws IOException{
 		int qLen=questions.length,i=0;
+		Question q;
 		while(i<qLen){
-			//((questions[i].getClass())questions[i]).WriteToFile(outFile);
-			//outFile.write("####");
-			System.out.println(questions[i].getClass());
+			//questions[i].WriteToFile(outFile);
+			q=questions[i];
+			if( q instanceof SimpleTextQuestion)
+				((SimpleTextQuestion)q).WriteToFile(outFile);
+			else if( q instanceof SimpleNumberQuestion)
+				((SimpleNumberQuestion)q).WriteToFile(outFile);
+			else if( q instanceof SingleChoiceQuestion)
+				((SingleChoiceQuestion)q).WriteToFile(outFile);
+			else if( q instanceof MultipleChoiceQuestion)
+				((MultipleChoiceQuestion)q).WriteToFile(outFile);
+			else if( q instanceof BooleanQuestion)
+				((BooleanQuestion)q).WriteToFile(outFile);
+			
+			outFile.write("####");
+			//System.out.println(questions[i].getClass());
 			i++;
 		}
 		
