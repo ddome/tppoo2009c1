@@ -155,15 +155,15 @@ public class FileParser{
 		if( options.size()<=1 || answer.size()!=1 || score < 0 || level < 0 || level > 2 )
 			throw new FileParserException("Archivo de preguntas mal formado.");
 		
-		answerIndex=options.indexOf(answer.get(0));
 		optionsAux = new String[options.size()];
 		optionsAux=options.toArray(optionsAux);
 		
-		return new SingleChoiceQuestion(question,optionsAux,answerIndex,level,score);
+		return new SingleChoiceQuestion(question,optionsAux,answer.get(0),level,score);
 	}
 	
 	private Question BuildMultipleChoiceQuestion(String question,List<String> options,List<String> answer,int level,int score) throws Exception{
 		String[] optionsAux;
+		String[] answersAux;
 		int size=answer.size(),i;
 		Integer[] answerIndexes = new Integer[size];
 		
@@ -175,8 +175,10 @@ public class FileParser{
 		}
 		
 		optionsAux = new String[options.size()];
-		optionsAux=options.toArray(optionsAux);
-		return new MultipleChoiceQuestion(question,optionsAux,answerIndexes,level,score);
+		optionsAux = options.toArray(optionsAux);
+		answersAux = new String[answer.size()];
+		answersAux = options.toArray(answersAux);
+		return new MultipleChoiceQuestion(question,optionsAux,answersAux,level,score);
 	}
 	
 	private Question BuildBooleanQuestion(String question,List<String> options,List<String> answer,int level,int score) throws Exception{
