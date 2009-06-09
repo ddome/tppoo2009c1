@@ -73,22 +73,21 @@ public class Ranking {
 		
 		try{
 			while(!exit){
-				
 				switch(level) {
-				case(Question.LEVEL_EASY ):
-					ranking = ranking_easy;
-					level=Question.LEVEL_MEDIUM;
-					break;
-				case(Question.LEVEL_MEDIUM):
-					ranking = ranking_medium;
-					level=Question.LEVEL_HARD;
-					break;
-				case(Question.LEVEL_HARD):
-					ranking = ranking_hard;
-					exit=true;
-					break;
-				default: 
-					throw new LevelException();		
+					case(Question.LEVEL_EASY ):
+						ranking = ranking_easy;
+						level=Question.LEVEL_MEDIUM;
+						break;
+					case(Question.LEVEL_MEDIUM):
+						ranking = ranking_medium;
+						level=Question.LEVEL_HARD;
+						break;
+					case(Question.LEVEL_HARD):
+						ranking = ranking_hard;
+						exit=true;
+						break;
+					default: 
+						throw new LevelException();		
 				}
 				i=0;
 				while(i<MAX_TOP_PLAYERS && ranking[i]!=null){

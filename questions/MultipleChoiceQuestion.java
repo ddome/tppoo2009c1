@@ -52,7 +52,7 @@ public class MultipleChoiceQuestion extends ChoiceQuestion{
 	public void WriteToFile(BufferedWriter outFile) throws IOException{
 		int i;
 		String[] choices = this.getChoices();
-		Integer[] answers = this.getAnswers();
+		String[] answers = this.getAnswers();
 		outFile.write("4");
 		outFile.newLine();
 		outFile.write(Integer.valueOf(this.getLevel()).toString());
@@ -68,7 +68,7 @@ public class MultipleChoiceQuestion extends ChoiceQuestion{
 			outFile.newLine();
 		}
 		for(i=0;i<answers.length;i++){
-			outFile.write(choices[answers[i]]);
+			outFile.write(answers[i]);
 			outFile.newLine();
 		}
 		outFile.write(Integer.valueOf(this.getScore()).toString());

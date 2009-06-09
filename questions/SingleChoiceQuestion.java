@@ -48,7 +48,7 @@ public class SingleChoiceQuestion extends ChoiceQuestion{
 			outFile.write(choices[i]);
 			outFile.newLine();
 		}
-		outFile.write(choices[this.getAnswer()]);
+		outFile.write(this.getAnswer());
 		outFile.newLine();
 		outFile.write(Integer.valueOf(this.getScore()).toString());
 		outFile.newLine();
