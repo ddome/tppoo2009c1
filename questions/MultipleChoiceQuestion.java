@@ -43,8 +43,9 @@ public class MultipleChoiceQuestion extends ChoiceQuestion{
 	
 	public Integer[] getAnswers(){
 		
-		Integer aux[] = new Integer[(answers.size()+1)];	
+		Integer aux[] = new Integer[(answers.size())];	
 		aux = answers.toArray(aux);
+		
 		return aux;
 	}
 }
