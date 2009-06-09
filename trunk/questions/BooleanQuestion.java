@@ -38,6 +38,7 @@ public class BooleanQuestion extends Question{
 		return this.answer;
 	}
 	
+	@Override
 	public boolean isCorrect(Object answer){
 		if( answer instanceof Boolean )
 			return this.answer.equals(answer);
@@ -49,6 +50,11 @@ public class BooleanQuestion extends Question{
 		return this.answer.equals(answer);
 	}
 	
+	/**
+	 * Guarda la pregunta en forma de texto en un archivo
+	 * @param outFile El archivo a ser escrito
+	 * @throws IOException Error al escribir la pregunta
+	 */
 	public void WriteToFile(BufferedWriter outFile) throws IOException{
 		outFile.write("5");
 		outFile.newLine();

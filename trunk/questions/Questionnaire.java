@@ -10,6 +10,13 @@ import player.*;
 import fileHandler.FileParser;
 import fileHandler.QuestionSaver;
 
+/** 
+ * Clase encargada de almacenar y administrar las preguntas
+ * utilizadas en cada juego.
+ * @author Grupo 4 de Programacion Orientada a Objetos
+ *
+ */
+
 public class Questionnaire {
 	
 	private LinkedList<Question> easy_questions   = new LinkedList<Question>();
@@ -21,6 +28,14 @@ public class Questionnaire {
 	private File rankingFile;
 	private File questionsFile;
 		
+	/**
+	 * Devuelve una nueva instancia.
+	 * @param questionsFile El archivo con las preguntas.
+	 * @param rankingFile El archivo con los maximos puntajes.
+	 * @throws RankingFileException Error al leer el archivo de puntajes
+	 * @throws FileParserException Error al leer el archivo de las preguntas
+	 * @throws Exception
+	 */
 	public Questionnaire( File questionsFile, File rankingFile ) throws RankingFileException,FileParserException,Exception{
 		
 		FileParser fd = new FileParser(questionsFile);
@@ -49,21 +64,28 @@ public class Questionnaire {
 			}
 		}
 
-		
+		/* Lo dejo preparado para una nueva jugada */
 		Collections.shuffle(easy_questions);
 		Collections.shuffle(medium_questions);
 		Collections.shuffle(hard_questions);
 		
 	}
 	
+	/**
+	 * Genera un nuevo juego de diez preguntas al azar.
+	 * @param user El usuario a guardar en caso de alcanzar un puntaje maximo
+	 * @param level El nivel del juego
+	 * @return Un nuevo juego con diez preguntas tomadas al azar del cuestionario
+	 * @throws LevelException El nivel de dificultad es incorrecto
+	 * @throws Exception
+	 */
 	public Quiz generateQuiz(String user,int level) throws LevelException,Exception {
 		
 		Question q[];
 		List<Question> list;
 		int size;
 		
-		switch(level) {
-		
+		switch(level) {	
 		case(Question.LEVEL_EASY ):
 			list = easy_questions;
 			break;
@@ -76,23 +98,26 @@ public class Questionnaire {
 		default: 
 			throw new LevelException();		
 		}
-		
+		/* Chequeo si hay menos preguntas que el estandar de diez */
 		if( list.size() < QUESTIONS_NUMBER )
 			size = list.size();
 		else
 			size = QUESTIONS_NUMBER;
-		
-		q =  new Question[size];
-				
+		/* Guardo las diez primeras preguntas del cuestionario */
+		q =  new Question[size];				
 		for(int i=0;i<size;i++) {
 			q[i] = list.get(i);
 		}
-		
+		/* Dejo listo el cuestionario para un nuevo juego */
 		Collections.shuffle(list);
 		
 		return new Quiz(user,level,q,rankingFile);			
 	}
 	
+	/**
+	 * @param level El nivel de dificultad de la lista a devolver
+	 * @return Una lista de preguntas de la dificultad pedida
+	 */
 	public Question[] getQuestionList(int level){
 		
 		LinkedList<Question> list;
@@ -186,6 +211,11 @@ public class Questionnaire {
 		SaveModification();
 	}
 	
+	/**
+	 * 
+	 * @param Pregunta a buscar
+	 * @return Verdadero si contiene a la pregunta, falso caso contrario
+	 */
 	public boolean containsQuestion(Question q){
 		
 		LinkedList<Question> list;
