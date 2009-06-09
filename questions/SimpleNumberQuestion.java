@@ -34,12 +34,20 @@ public class SimpleNumberQuestion extends Question {
 	
 	public void WriteToFile(BufferedWriter outFile) throws IOException{
 		outFile.write("2");
-		outFile.write(this.getLevel());
+		outFile.newLine();
+		outFile.write(Integer.valueOf(this.getLevel()).toString());
+		outFile.newLine();
 		outFile.write("1");
+		outFile.newLine();
 		outFile.write("1");
+		outFile.newLine();
 		outFile.write(this.getQuestion());
+		outFile.newLine();
 		outFile.write(this.getAnswer().toString());
+		outFile.newLine();
 		outFile.write(this.getAnswer().toString());
+		outFile.newLine();
 		outFile.write(this.getScore());
+		outFile.newLine();
 	}
 }

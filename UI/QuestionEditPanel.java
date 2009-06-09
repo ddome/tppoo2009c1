@@ -48,7 +48,7 @@ public class QuestionEditPanel extends JPanel {
 		return selectedIndex == -1 ? null: this.questions.get(selectedIndex);
 	}
 	
-	public void DeleteQuestionClicked(){
+	public void DeleteQuestionClicked() {
 		int selectedIndex = liQuestions.getSelectedIndex();
 		/* Valido que el usuario seleccione una pregunta
 		*/
@@ -67,7 +67,7 @@ public class QuestionEditPanel extends JPanel {
 					 JOptionPane.WARNING_MESSAGE,  
 					 null);
 			// Si confirmo el borrado
-			if(confirm == 1){
+			if(confirm == JOptionPane.OK_OPTION){
 				q.deleteQuestion(getSelectedQuestion());
                 /*TODO refresh de preguntas*/
 			}

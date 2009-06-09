@@ -51,16 +51,25 @@ public class BooleanQuestion extends Question{
 	
 	public void WriteToFile(BufferedWriter outFile) throws IOException{
 		outFile.write("5");
-		outFile.write(this.getLevel());
+		outFile.newLine();
+		outFile.write(Integer.valueOf(this.getLevel()).toString());
+		outFile.newLine();
 		outFile.write("2");
+		outFile.newLine();
 		outFile.write("1");
+		outFile.newLine();
 		outFile.write(this.getQuestion());
+		outFile.newLine();
 		outFile.write("Verdadero");
+		outFile.newLine();
 		outFile.write("Falso");
+		outFile.newLine();
 		if(this.getAnswer())
 			outFile.write("Verdadero");
 		else
 			outFile.write("Falso");
-		outFile.write(this.getScore());
+		outFile.newLine();
+		outFile.write(Integer.valueOf(this.getScore()).toString());
+		outFile.newLine();
 	}
 }

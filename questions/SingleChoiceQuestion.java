@@ -34,13 +34,22 @@ public class SingleChoiceQuestion extends ChoiceQuestion{
 		int i;
 		String[] choices = this.getChoices();
 		outFile.write("3");
-		outFile.write(this.getLevel());
-		outFile.write(choices.length);
+		outFile.newLine();
+		outFile.write(Integer.valueOf(this.getLevel()).toString());
+		outFile.newLine();
+		outFile.write(Integer.valueOf(choices.length).toString());
+		outFile.newLine();
 		outFile.write("1");
+		outFile.newLine();
 		outFile.write(this.getQuestion());
-		for(i=0;i<choices.length;i++)
+		outFile.newLine();
+		for(i=0;i<choices.length;i++){
 			outFile.write(choices[i]);
+			outFile.newLine();
+		}
 		outFile.write(choices[this.getAnswer()]);
-		outFile.write(this.getScore());
+		outFile.newLine();
+		outFile.write(Integer.valueOf(this.getScore()).toString());
+		outFile.newLine();
 	}
 }
