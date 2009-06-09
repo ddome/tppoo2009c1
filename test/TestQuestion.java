@@ -53,7 +53,7 @@ public class TestQuestion {
 		Assert.assertFalse(this.q1.equals(q4_copy));
 		Assert.assertFalse(this.q1.equals(q5_copy));
 		
-		Assert.assertFalse(this.q2.equals(q2_copy));
+		Assert.assertFalse(this.q2.equals(q1_copy));
 		Assert.assertFalse(this.q2.equals(q3_copy));
 		Assert.assertFalse(this.q2.equals(q4_copy));
 		Assert.assertFalse(this.q2.equals(q5_copy));
