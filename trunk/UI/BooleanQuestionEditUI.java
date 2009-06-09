@@ -4,11 +4,13 @@ import javax.swing.*;
 
 import questions.*;
 
-public class SimpleTextQuestionEditUI extends JPanel {
+public class BooleanQuestionEditUI extends JPanel {
 
 	private javax.swing.JPanel jContentPane = null;
 	private JTextField txtQuestion = null;
-	private JTextField txtAnswer = null;
+    private ButtonGroup buttonGroup = null;
+    private JRadioButton rbTrue = null;
+    private JRadioButton rbFalse = null;
 	private Question question = null;
 	private Boolean isNewQuestion;
 
@@ -20,7 +22,7 @@ public class SimpleTextQuestionEditUI extends JPanel {
 	/**
 	 * Constructor para alta
 	 */
-	public SimpleTextQuestionEditUI() {
+	public BooleanQuestionEditUI() {
 		super();
 		isNewQuestion = true;
 		initialize();
@@ -28,7 +30,7 @@ public class SimpleTextQuestionEditUI extends JPanel {
 	/**
 	 * Constructor para edicion
 	 */
-	public SimpleTextQuestionEditUI(Question question) {
+	public BooleanQuestionEditUI(Question question) {
 		super();
 		isNewQuestion = false;
 		this.question = question;
@@ -36,11 +38,11 @@ public class SimpleTextQuestionEditUI extends JPanel {
 	}
 	
 	public Question getFinalQuestion(){
-		SimpleTextQuestion newQuestion;
-		newQuestion = new SimpleTextQuestion(txtQuestion.getText(),
-                txtAnswer.getText(),
-                getDifficultyCode(cmbLevels.getSelectedItem().toString()),
-                2);
+		BooleanQuestion newQuestion;
+		newQuestion = new BooleanQuestion(getQuestion(), 
+                getAnswer(), 
+                getDifficultyCode(cmbLevels.getSelectedItem().toString()), 
+                1);
 		return (Question)newQuestion;
 	}
 
@@ -52,8 +54,10 @@ public class SimpleTextQuestionEditUI extends JPanel {
 	private void initialize() {
 		this.setSize(650, 350);
 		this.setLayout(null);
+        this.buttonGroup = new ButtonGroup();
 		this.add(getQuestionTextBox(), null);
-		this.add(getAnswerTextBox(), null);
+        this.add(getTrueRadioButton(), null);
+        this.add(getFalseRadioButton(), null);
         this.add(this.getLevelCombo());
         this.add(this.getScoreTxt());
         this.add(this.getLevelLabel());
@@ -72,24 +76,38 @@ public class SimpleTextQuestionEditUI extends JPanel {
 		return txtQuestion;
 	}
 
-	/**
-	 * This method initializes jTextField	
-	 * 	
-	 * @return javax.swing.JTextField	
-	 */    
-	private JTextField getAnswerTextBox() {
-		if (txtAnswer == null) {
-			txtAnswer = new JTextField();
-			txtAnswer.setBounds(19, 51, 603, 28);
-			if(!isNewQuestion){
-				txtAnswer.setText(((SimpleTextQuestion)question).getAnswer());	
-			}			
-		}
-		return txtAnswer;
-	}
+	private JRadioButton getTrueRadioButton() {
+        if(rbTrue == null){
+            rbTrue = new JRadioButton();
+            rbTrue.setText("Verdadero");
+            rbTrue.setBounds(19, 50, 120, 25);
+            buttonGroup.add(rbTrue);
+            if(!isNewQuestion){
+                rbTrue.setSelected(!((BooleanQuestion)question).getAnswer());
+            }            
+        }
+        return rbTrue;
+    }
+    
+    private JRadioButton getFalseRadioButton(){
+        if(rbFalse == null){
+            rbFalse = new JRadioButton();
+            rbFalse.setText("Falso");
+            rbFalse.setBounds(160, 50, 120, 25);
+            if(!isNewQuestion){
+                rbFalse.setSelected(!((BooleanQuestion)question).getAnswer());
+            }
+            buttonGroup.add(rbFalse);
+        }
+        return rbFalse;
+    }
 	
 	private String getQuestion(){
 		return getQuestionTextBox().getText();
+	}
+	
+	private Boolean getAnswer(){
+		return true;
 	}
     
     private JLabel getLevelLabel(){
@@ -136,7 +154,7 @@ public class SimpleTextQuestionEditUI extends JPanel {
         return txtScore;
     }
     
-    private int getDifficultyCode(String difficulty){
+                private int getDifficultyCode(String difficulty){
         int code;
         if(difficulty.equals("Facil")){
             code = Question.LEVEL_EASY;
@@ -163,9 +181,4 @@ public class SimpleTextQuestionEditUI extends JPanel {
         }
         return dif;
     }
-    
-    //private int getScore(){
-        //Integer score = Integer.;
-       // if(t)
-   // }
  } 

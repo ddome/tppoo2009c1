@@ -148,6 +148,7 @@ public class QuestionEditPanel extends JPanel {
 		questionArray = questionsText.toArray(questionArray);
 		this.liQuestions = new JList(questionArray);
 		this.liQuestions.setBounds(20, 80, 575, 250);
+        this.liQuestions.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.liQuestions.setVisible(true);
 		return this.liQuestions;
 	}
