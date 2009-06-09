@@ -4,7 +4,7 @@
  * TODO Para cambiar la plantilla de este archivo generado, vaya a
  * Ventana - Preferencias - Java - Estilo de c�digo - Plantillas de c�digo
  */
-package ui;
+package UI;
 
 import javax.swing.JButton;
 

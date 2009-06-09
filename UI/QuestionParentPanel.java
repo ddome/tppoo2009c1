@@ -1,5 +1,5 @@
 
-package ui;
+package UI;
 
 import java.awt.Component;
 import java.awt.Window;

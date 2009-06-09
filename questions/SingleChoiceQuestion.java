@@ -1,5 +1,8 @@
 package questions;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class SingleChoiceQuestion extends ChoiceQuestion{
 	
 	// answer not set
@@ -25,5 +28,19 @@ public class SingleChoiceQuestion extends ChoiceQuestion{
 	
 	public Integer getAnswer(){
 		return answer;
+	}
+	
+	public void WriteToFile(BufferedWriter outFile) throws IOException{
+		int i;
+		String[] choices = this.getChoices();
+		outFile.write("3");
+		outFile.write(this.getLevel());
+		outFile.write(choices.length);
+		outFile.write("1");
+		outFile.write(this.getQuestion());
+		for(i=0;i<choices.length;i++)
+			outFile.write(choices[i]);
+		outFile.write(choices[this.getAnswer()]);
+		outFile.write(this.getScore());
 	}
 }
