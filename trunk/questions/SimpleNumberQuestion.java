@@ -4,7 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 
 /**
- * Tipo de pregunta con respuesta numerica
+ * Tipo de pregunta con respuesta numerica.
  * @author Grupo 4 de Programacion Orientada a Objetos
  *
  */

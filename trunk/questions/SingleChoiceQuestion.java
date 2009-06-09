@@ -17,7 +17,7 @@ public class SingleChoiceQuestion extends ChoiceQuestion{
 	 * Devuelve una instancia nueva.
 	 * @param question La pregunta a responder
 	 * @param choices Las opciones posibles
-	 * @param answers Las respuestas a la pregunta
+	 * @param answer Las respuestas a la pregunta
 	 * @param level El nivel de dificultad
 	 * @param score El puntaje de la pregunta
 	 */
