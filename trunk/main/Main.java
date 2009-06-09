@@ -14,7 +14,7 @@ public class Main {
                 try{
                 		File questions,ranking;
                 		
-                		questions = new File("data/questions");
+                		questions = new File("data/questions.txt");
                 		ranking = new File("data/ranking");
                 		
                 		if(!questions.exists() )

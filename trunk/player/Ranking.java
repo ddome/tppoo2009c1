@@ -10,6 +10,11 @@ import java.io.ObjectInputStream;
 import java.io.FileInputStream;
 import java.io.EOFException;
 
+/**
+ * Clase que administra el ranking de maximos puntajes de usuarios
+ * @author Grupo 4 de Programacion Orientada a Objetos
+ *
+ */
 public class Ranking {
 	private final int MAX_TOP_PLAYERS = 10;
 
@@ -19,6 +24,12 @@ public class Ranking {
 	
 	private File rankingFile;
 	
+	/**
+	 * Devuelve una nueva instancia
+	 * @param rankingFile El archivo de los maximos puntajes
+	 * @throws RankingFileException Error al leer el archivo de maximos puntajes
+	 * @throws Exception
+	 */
 	public Ranking(File rankingFile) throws RankingFileException,Exception{
 	
 		this.rankingFile = rankingFile;
@@ -26,6 +37,12 @@ public class Ranking {
 		ReadScores();
 	}
 	
+	/**
+	 * Guarda el puntaje para un juego en caso de haber llegado al top 10.
+	 * @param game El usuario y puntaje
+	 * @throws LevelException Nivel de dificultad invalido
+	 * @throws Exception 
+	 */
 	public void saveScore(Game game)throws LevelException,Exception{
 
 		Game ranking[];
@@ -64,7 +81,7 @@ public class Ranking {
 	
 	}
 
-	
+		
 	private void WriteScores() throws LevelException,Exception{
 		int level=Question.LEVEL_EASY,i;
 		boolean exit=false;

@@ -88,7 +88,7 @@ public class mdiParent extends JFrame {
 						((mdiParent)parent).addFrame(p, "Quiz!");
 					}
 					catch(Exception ex){
-						System.out.println(ex.getMessage());
+						System.out.println(ex.getMessage());						
 					}		
 				}
 				
