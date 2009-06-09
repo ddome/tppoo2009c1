@@ -14,9 +14,6 @@ public class Main {
                 try{
                 		File questions,ranking;
                 		
-                		java.io.File currentDir = new java.io.File("");
-                		System.out.println(currentDir.getAbsolutePath());
-                		
                 		questions = new File("data/questions");
                 		ranking = new File("data/ranking");
                 		
