@@ -213,7 +213,7 @@ public class Questionnaire {
 	
 	/**
 	 * 
-	 * @param Pregunta a buscar
+	 * @param q Pregunta a buscar
 	 * @return Verdadero si contiene a la pregunta, falso caso contrario
 	 */
 	public boolean containsQuestion(Question q){
