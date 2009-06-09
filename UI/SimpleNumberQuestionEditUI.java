@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import questions.*;
 
-public class SimpleTextQuestionEditUI extends JPanel {
+public class SimpleNumberQuestionEditUI extends JPanel {
 
 	private javax.swing.JPanel jContentPane = null;
 	private JTextField txtQuestion = null;
@@ -20,7 +20,7 @@ public class SimpleTextQuestionEditUI extends JPanel {
 	/**
 	 * Constructor para alta
 	 */
-	public SimpleTextQuestionEditUI() {
+	public SimpleNumberQuestionEditUI() {
 		super();
 		isNewQuestion = true;
 		initialize();
@@ -28,7 +28,7 @@ public class SimpleTextQuestionEditUI extends JPanel {
 	/**
 	 * Constructor para edicion
 	 */
-	public SimpleTextQuestionEditUI(Question question) {
+	public SimpleNumberQuestionEditUI(Question question) {
 		super();
 		isNewQuestion = false;
 		this.question = question;
@@ -36,11 +36,11 @@ public class SimpleTextQuestionEditUI extends JPanel {
 	}
 	
 	public Question getFinalQuestion(){
-		SimpleTextQuestion newQuestion;
-		newQuestion = new SimpleTextQuestion(txtQuestion.getText(),
-                txtAnswer.getText(),
+		SimpleNumberQuestion newQuestion;
+		newQuestion = new SimpleNumberQuestion(getQuestion(), 
+                getAnswer(),
                 getDifficultyCode(cmbLevels.getSelectedItem().toString()),
-                2);
+                1);
 		return (Question)newQuestion;
 	}
 
@@ -66,7 +66,7 @@ public class SimpleTextQuestionEditUI extends JPanel {
 			txtQuestion.setBounds(19, 15, 603, 25);
 			txtQuestion.setVisible(true);	
 			if(!isNewQuestion){
-				txtQuestion.setText(question.getQuestion());
+				txtQuestion.setText(question.getQuestion().toString());
 			}
 		}		
 		return txtQuestion;
@@ -82,7 +82,7 @@ public class SimpleTextQuestionEditUI extends JPanel {
 			txtAnswer = new JTextField();
 			txtAnswer.setBounds(19, 51, 603, 28);
 			if(!isNewQuestion){
-				txtAnswer.setText(((SimpleTextQuestion)question).getAnswer());	
+				txtAnswer.setText(((SimpleNumberQuestion)question).getAnswer().toString());	
 			}			
 		}
 		return txtAnswer;
@@ -90,6 +90,11 @@ public class SimpleTextQuestionEditUI extends JPanel {
 	
 	private String getQuestion(){
 		return getQuestionTextBox().getText();
+	}
+	
+	private int getAnswer(){
+		int answer = Integer.valueOf(getAnswerTextBox().getText());
+        return answer;
 	}
     
     private JLabel getLevelLabel(){
@@ -163,9 +168,4 @@ public class SimpleTextQuestionEditUI extends JPanel {
         }
         return dif;
     }
-    
-    //private int getScore(){
-        //Integer score = Integer.;
-       // if(t)
-   // }
  } 

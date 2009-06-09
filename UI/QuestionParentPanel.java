@@ -25,38 +25,7 @@ public class QuestionParentPanel extends JPanel {
 		this.quiz = quiz;
 		initialize();
 	}
-	
-	public void SetNextQuestion() throws Exception{
-		if(this.questionPanel instanceof BooleanQuestionUI){
-			this.quiz.answerActualQuestion(((BooleanQuestionUI)this.questionPanel).getAnswer());
-		}
-		else if(this.questionPanel instanceof SimpleTextQuestionUI){
-			this.quiz.answerActualQuestion(((SimpleTextQuestionUI)this.questionPanel).getAnswer());
-		}
-		else if(this.questionPanel instanceof SimpleNumberQuestionUI){
-			this.quiz.answerActualQuestion(((SimpleNumberQuestionUI)this.questionPanel).getAnswer());
-		}
-		else if(this.questionPanel instanceof SingleChoiceQuestionUI){
-			this.quiz.answerActualQuestion(((SingleChoiceQuestionUI)this.questionPanel).getAnswer());
-		}
-		else if(this.questionPanel instanceof MultipleChoiceQuestionUI){
-			this.quiz.answerActualQuestion(((MultipleChoiceQuestionUI)this.questionPanel).getAnswer());
-		}
-		else{
-			return;
-		}
 
-		if(this.quiz.questionExists()){
-			this.actualQuestion = this.quiz.getActualQuestion();
-			
-			this.remove(this.questionPanel);
-			this.repaint();
-			this.questionPanel = this.getQuestionPanel();
-			this.add(this.questionPanel, null);
-			//this.
-		}
-
-	}
 	/**
 	 * This method initializes this
 	 * 
@@ -118,6 +87,48 @@ public class QuestionParentPanel extends JPanel {
 			specPanel = new MultipleChoiceQuestionUI(this.quiz);
 		}
 		return specPanel;
+	}
+    
+    public void SetNextQuestion() throws Exception{
+		if(this.questionPanel instanceof BooleanQuestionUI){
+			this.quiz.answerActualQuestion(((BooleanQuestionUI)this.questionPanel).getAnswer());
+		}
+		else if(this.questionPanel instanceof SimpleTextQuestionUI){
+			this.quiz.answerActualQuestion(((SimpleTextQuestionUI)this.questionPanel).getAnswer());
+		}
+		else if(this.questionPanel instanceof SimpleNumberQuestionUI){
+			this.quiz.answerActualQuestion(((SimpleNumberQuestionUI)this.questionPanel).getAnswer());
+		}
+		else if(this.questionPanel instanceof SingleChoiceQuestionUI){
+			this.quiz.answerActualQuestion(((SingleChoiceQuestionUI)this.questionPanel).getAnswer());
+		}
+		else if(this.questionPanel instanceof MultipleChoiceQuestionUI){
+			this.quiz.answerActualQuestion(((MultipleChoiceQuestionUI)this.questionPanel).getAnswer());
+		}
+		else{
+			return;
+		}
+
+		if(this.quiz.questionExists()){
+			this.actualQuestion = this.quiz.getActualQuestion();
+			
+			this.remove(this.questionPanel);
+			this.repaint();
+			this.questionPanel = this.getQuestionPanel();
+			this.add(this.questionPanel, null);
+			//this.
+		}
+        else{
+            this.remove(questionPanel);
+            this.repaint();
+            //this.add(getScoresPanel());
+            btnNext.setVisible(false);
+        }
+        
+      /*  private JPanel getScoresPanel(){
+            questionPanel = new 
+        }*/
+
 	}
 	
 }

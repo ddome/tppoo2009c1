@@ -49,7 +49,7 @@ public class QuestionDetailEditPanel extends JPanel {
         Window parent = SwingUtilities.getWindowAncestor((Component)this);
         QuestionEditPanel editPanel;
         editPanel = new QuestionEditPanel(q);       
-//Guardar pregunta
+        //Guardar pregunta
         ((mdiParent)parent).addFrame(editPanel, "Editar Preguntas");
 	}
 	
@@ -115,16 +115,16 @@ public class QuestionDetailEditPanel extends JPanel {
 			questionPanel = new SimpleTextQuestionEditUI(question);
 		}
 		if(question instanceof SimpleNumberQuestion){
-			//questionPanel = new SimpleNumberQuestionEditUI(question);
+			questionPanel = new SimpleNumberQuestionEditUI(question);
 		}
 		if(question instanceof BooleanQuestion){
-			//questionPanel = new BooleanQuestionEditUI(question);
+			questionPanel = new BooleanQuestionEditUI(question);
 		}
 		if(question instanceof SingleChoiceQuestion){
-			//questionPanel = new SingleChoiceQuestionEditUI(question);
+			questionPanel = new SingleChoiceQuestionEditUI(question);
 		}
 		if(question instanceof MultipleChoiceQuestion){
-			//questionPanel = new MultipleChoiceQuestionEditUI(question);
+			questionPanel = new MultipleChoiceQuestionEditUI(question);
 		}
 		return questionPanel;
 	}
