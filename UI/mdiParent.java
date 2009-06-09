@@ -2,9 +2,9 @@
  * Creado el 06/06/2009
  *
  * TODO Para cambiar la plantilla de este archivo generado, vaya a
- * Ventana - Preferencias - Java - Estilo de código - Plantillas de código
+ * Ventana - Preferencias - Java - Estilo de cï¿½digo - Plantillas de cï¿½digo
  */
-package UI;
+package ui;
 
 import javax.swing.JFrame;
 import java.beans.*;
@@ -22,7 +22,7 @@ import java.io.File;
  * @author Carlos
  *
  * TODO Para cambiar la plantilla de este comentario generado, vaya a
- * Ventana - Preferencias - Java - Estilo de código - Plantillas de código
+ * Ventana - Preferencias - Java - Estilo de cï¿½digo - Plantillas de cï¿½digo
  */
 public class mdiParent extends JFrame {
 

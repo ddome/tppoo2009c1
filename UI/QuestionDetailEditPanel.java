@@ -1,4 +1,4 @@
-package UI;
+package ui;
 
 import javax.swing.*;
 
@@ -15,18 +15,21 @@ import java.util.*;
  */
 public class QuestionDetailEditPanel extends JPanel {
 
-	private Boolean isNewQuestion;
 	private defaultButton btnCancel = null;
 	private defaultButton btnSaveChanges = null;
-	private Question question = null;
 	private JPanel questionPanel = null;
+
+    private Boolean isNewQuestion;    
+    private Question question = null;
+    private Questionnaire q = null;
 	
 	/**
 	 * Constructor para nueva pregunta
 	 */
-	public QuestionDetailEditPanel(){
+	public QuestionDetailEditPanel(Questionnaire q){
 		super();
 		this.isNewQuestion = true;
+        this.q = q;
 		initialize();
 	}
 	
@@ -34,19 +37,28 @@ public class QuestionDetailEditPanel extends JPanel {
 	 * Constructor para edicion de pregunta
 	 * Recibe la pregunta a editar
 	 */
-	public QuestionDetailEditPanel(Question question) {
+	public QuestionDetailEditPanel(Questionnaire q, Question question) {
 		super();
 		this.question = question;
+        this.q = q;
 		this.isNewQuestion = false;
 		initialize();
 	}
 	
 	public void  SaveChangesClicked(){
-		
+        Window parent = SwingUtilities.getWindowAncestor((Component)this);
+        QuestionEditPanel editPanel;
+        editPanel = new QuestionEditPanel(q);       
+//Guardar pregunta
+        ((mdiParent)parent).addFrame(editPanel, "Editar Preguntas");
 	}
 	
 	public void CancelClicked(){
-		
+		Window parent = SwingUtilities.getWindowAncestor((Component)this);
+        QuestionEditPanel editPanel;
+        editPanel = new QuestionEditPanel(q);       
+
+        ((mdiParent)parent).addFrame(editPanel, "Editar Preguntas");
 	}
 	
 	/**
@@ -57,15 +69,22 @@ public class QuestionDetailEditPanel extends JPanel {
 	private void initialize() {
 		this.setLayout(null);
 		this.setSize(650,400);
-		this.add(this.getCancelButton());
-		this.add(this.getSaveChangesButton());
-		//this.add() obtener panel pregunta
+		this.add(this.getCancelButton(), null);
+		this.add(this.getSaveChangesButton(), null);
+        if(isNewQuestion){
+            
+        }
+        else{
+            this.add(this.getQuestionPanel(), null);
+        }
+		
 	}
 	
 	private defaultButton getSaveChangesButton() {
 		if (btnSaveChanges == null) {
 			btnSaveChanges = new defaultButton("Guardar");
-			btnSaveChanges.setLocation(500, 380);
+			btnSaveChanges.setLocation(480, 320);
+            btnSaveChanges.setVisible(true);
 			btnSaveChanges.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					QuestionDetailEditPanel editPanel = (QuestionDetailEditPanel)((Component)e.getSource()).getParent();
@@ -79,11 +98,12 @@ public class QuestionDetailEditPanel extends JPanel {
 	private defaultButton getCancelButton(){
 		if (btnCancel == null) {
 			btnCancel = new defaultButton("Cancelar");
-			btnCancel.setLocation(350, 380);
+			btnCancel.setLocation(330, 320);
+            btnCancel.setVisible(true);
 			btnCancel.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					QuestionDetailEditPanel editPanel = (QuestionDetailEditPanel)((Component)e.getSource()).getParent();
-					editPanel.SaveChangesClicked();
+					editPanel.CancelClicked();
 				}
 			});
 		}
@@ -92,7 +112,7 @@ public class QuestionDetailEditPanel extends JPanel {
 	
 	private JPanel getQuestionPanel(){
 		if(question instanceof SimpleTextQuestion){
-			//questionPanel = new SimpleTextQuestionEditUI(question);
+			questionPanel = new SimpleTextQuestionEditUI(question);
 		}
 		if(question instanceof SimpleNumberQuestion){
 			//questionPanel = new SimpleNumberQuestionEditUI(question);
