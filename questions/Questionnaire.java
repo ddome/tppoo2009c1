@@ -120,38 +120,41 @@ public class Questionnaire {
 	 * Borra una pregunta de la base de datos.
 	 * @param q Pregunta a borrar
 	 */
-	public void deleteQuestion(Question q) throws IOException{
-		
-		LinkedList<Question> list;
-		
-		switch(q.getLevel()) {
-			case(Question.LEVEL_EASY ):
-				list = easy_questions;
-				break;
-			case(Question.LEVEL_MEDIUM):
-				list = medium_questions;
-				break;
-			default:
-				list = hard_questions;				
-		}		
-		
-		
-		for( Question q2: list ) {
+	public void deleteQuestion(Question q){
+		try{
+			LinkedList<Question> list;
+			switch(q.getLevel()) {
+				case(Question.LEVEL_EASY ):
+					list = easy_questions;
+					break;
+				case(Question.LEVEL_MEDIUM):
+					list = medium_questions;
+					break;
+				default:
+					list = hard_questions;				
+			}		
 			
-			if( q2.equals(q)  ) {
-				list.remove(q2);
-				break;
-			}			
+			
+			for( Question q2: list ) {
+				
+				if( q2.equals(q)  ) {
+					list.remove(q2);
+					break;
+				}			
+			}
+			Question[] easy_questionsAux = new Question[easy_questions.size()];
+			Question[] medium_questionsAux = new Question[medium_questions.size()];
+			Question[] hard_questionsAux = new Question[hard_questions.size()];
+			
+			easy_questionsAux = easy_questions.toArray(easy_questionsAux);
+			medium_questionsAux = medium_questions.toArray(medium_questionsAux);
+			hard_questionsAux = hard_questions.toArray(hard_questionsAux);
+
+			QuestionSaver qSaver = new QuestionSaver(questionsFile,easy_questionsAux,medium_questionsAux,hard_questionsAux);
+
+		}catch(Exception e){
+			System.out.println(e.getMessage());
 		}
-		Question[] easy_questionsAux = new Question[easy_questions.size()];
-		Question[] medium_questionsAux = new Question[medium_questions.size()];
-		Question[] hard_questionsAux = new Question[hard_questions.size()];
-		
-		easy_questionsAux = easy_questions.toArray(easy_questionsAux);
-		medium_questionsAux = medium_questions.toArray(medium_questionsAux);
-		hard_questionsAux = hard_questions.toArray(hard_questionsAux);
-		System.out.println("ACA");
-		//QuestionSaver qSaver = new QuestionSaver(questionsFile,easy_questionsAux,medium_questionsAux,hard_questionsAux);
 	}
 	
 	/**
