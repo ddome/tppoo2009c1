@@ -169,6 +169,22 @@ public class Questionnaire {
 		
 		SaveModification();
 	}
+
+	/**
+	 * Modifica una pregunta de la base de datos.
+	 * @param org La pregunta original a modificar
+	 * @param mod La pregunta modificada
+	 * @throws IOException 
+	 */
+	public void modifyQuestion(Question org,Question mod) {
+		
+		LinkedList<Question> list;
+		
+		deleteQuestion(org);	
+		newQuestion(mod);
+		
+		SaveModification();
+	}
 	
 	public boolean containsQuestion(Question q){
 		
@@ -185,22 +201,6 @@ public class Questionnaire {
 				list = hard_questions;				
 		}
 		return list.contains(q);		
-	}
-
-	/**
-	 * Modifica una pregunta de la base de datos.
-	 * @param org La pregunta original a modificar
-	 * @param mod La pregunta modificada
-	 * @throws IOException 
-	 */
-	public void modifyQuestion(Question org,Question mod) {
-		
-		LinkedList<Question> list;
-		
-		deleteQuestion(org);	
-		newQuestion(mod);
-		
-		SaveModification();
 	}
 	
 	private void SaveModification(){
