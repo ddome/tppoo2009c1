@@ -142,15 +142,8 @@ public class Questionnaire {
 				break;
 			}			
 		}
-		Question[] easy_questionsAux = new Question[easy_questions.size()];
-		Question[] medium_questionsAux = new Question[medium_questions.size()];
-		Question[] hard_questionsAux = new Question[hard_questions.size()];
 		
-		easy_questionsAux = easy_questions.toArray(easy_questionsAux);
-		medium_questionsAux = medium_questions.toArray(medium_questionsAux);
-		hard_questionsAux = hard_questions.toArray(hard_questionsAux);
-
-		QuestionSaver qSaver = new QuestionSaver(questionsFile,easy_questionsAux,medium_questionsAux,hard_questionsAux);
+		SaveModification();
 	}
 	
 	/**
@@ -174,6 +167,7 @@ public class Questionnaire {
 		
 		list.add(q);
 		
+		SaveModification();
 	}
 
 	/**
@@ -189,9 +183,22 @@ public class Questionnaire {
 		deleteQuestion(org);	
 		newQuestion(mod);
 		
+		SaveModification();
 	}
 	
-	
+	private void SaveModification(){
+		Question[] easy_questionsAux = new Question[easy_questions.size()];
+		Question[] medium_questionsAux = new Question[medium_questions.size()];
+		Question[] hard_questionsAux = new Question[hard_questions.size()];
+		
+		easy_questionsAux = easy_questions.toArray(easy_questionsAux);
+		medium_questionsAux = medium_questions.toArray(medium_questionsAux);
+		hard_questionsAux = hard_questions.toArray(hard_questionsAux);
+
+		QuestionSaver saver = new QuestionSaver(questionsFile);
+		saver.Save(easy_questionsAux, medium_questionsAux, hard_questionsAux);
+		saver.close();
+	}
 	
 	
 	

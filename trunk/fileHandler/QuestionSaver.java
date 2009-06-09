@@ -14,13 +14,29 @@ import questions.SimpleTextQuestion;
 import questions.SingleChoiceQuestion;
 
 public class QuestionSaver {
-	private BufferedWriter outFile;
+	BufferedWriter outFile;
 	
-	public QuestionSaver(File output,Question[] easy_questions,Question[] medium_questions,Question[]  hard_questions){
+	public QuestionSaver(File ouput){
+		try{
+			outFile = new BufferedWriter(new FileWriter(ouput));
+		}catch(Exception e){
+			//throw new QuestionSaverException("Se produjo un error al intentar abrir el archivo.");
+		}
+	}
+	
+	public void close(){
+		try{
+			outFile.close();
+		}catch(Exception e){
+			//throw new QuestionSaverException("Se produjo un error al intentar cerrar el archivo.");
+		}
+	}
+	
+	public void Save(Question[] easy_questions,Question[] medium_questions,Question[]  hard_questions){
 		int level=Question.LEVEL_EASY;
 		boolean exit=false;
+		
 		try{
-			outFile = new BufferedWriter(new FileWriter(output));
 			Question[] questions=null;
 			while(!exit){
 				switch(level) {
