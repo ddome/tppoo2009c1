@@ -13,8 +13,8 @@ public class prueba {
         public static void main( String[] args) throws Exception,FileParserException{
                 try{
                 		File preguntas,ranking;
-                		preguntas = new File("/Users/damian/Desktop/preguntas");
-                		ranking = new File("/Users/damian/Desktop/ranking");
+                		preguntas = new File("/home/bombax/workspace/tppoo2009c1/preguntas");
+                		ranking = new File("/home/bombax/workspace/tppoo2009c1/ranking");
                 		if(!preguntas.exists() )
                 			preguntas.createNewFile();
                 		if(!ranking.exists() )

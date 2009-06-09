@@ -1,5 +1,8 @@
 package questions;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class SimpleTextQuestion extends Question {
 
 	private String answer;
@@ -28,4 +31,14 @@ public class SimpleTextQuestion extends Question {
 		return this.answer.toLowerCase().equals(answer.toLowerCase());
 	}
 		
+	public void WriteToFile(BufferedWriter outFile) throws IOException{
+		outFile.write("1");	
+		outFile.write(this.getLevel());
+		outFile.write("1");
+		outFile.write("1");
+		outFile.write(this.getQuestion());
+		outFile.write(this.getAnswer());
+		outFile.write(this.getAnswer());
+		outFile.write(this.getScore());
+	}
 }

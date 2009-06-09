@@ -1,9 +1,12 @@
 package questions;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 /**
  *  
  * Clase abstracta que representa una pregunta.
- * @author Grupo 4 de Programaci—n Orientada a Objetos
+ * @author Grupo 4 de Programacin Orientada a Objetos
  */
 
 public abstract class Question{
@@ -17,7 +20,7 @@ public abstract class Question{
 	public static final int LEVEL_HARD   = 2;
 	
 	/**
-	 * MŽtodo utilizado por las subclases para crear instancias
+	 * Mtodo utilizado por las subclases para crear instancias
 	 * 
 	 * @param question La pregunta asociada
 	 * @param level    El nivel de dificultad
@@ -117,4 +120,7 @@ public abstract class Question{
 		return this.question;
 	}
 	
+	/*public void WriteToFile(BufferedWriter outFile) throws IOException{
+		
+	}*/
 }

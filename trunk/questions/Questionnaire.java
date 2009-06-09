@@ -1,11 +1,14 @@
 package questions;
 import java.util.*;
 import java.io.File;
+import java.io.IOException;
+
 import fileHandler.*;
 
 import player.*;
 
 import fileHandler.FileParser;
+import fileHandler.QuestionSaver;
 
 public class Questionnaire {
 	
@@ -117,7 +120,7 @@ public class Questionnaire {
 	 * Borra una pregunta de la base de datos.
 	 * @param q Pregunta a borrar
 	 */
-	public void deleteQuestion(Question q) {
+	public void deleteQuestion(Question q) throws IOException{
 		
 		LinkedList<Question> list;
 		
@@ -140,7 +143,15 @@ public class Questionnaire {
 				break;
 			}			
 		}
+		Question[] easy_questionsAux = new Question[easy_questions.size()];
+		Question[] medium_questionsAux = new Question[medium_questions.size()];
+		Question[] hard_questionsAux = new Question[hard_questions.size()];
 		
+		easy_questionsAux = easy_questions.toArray(easy_questionsAux);
+		medium_questionsAux = medium_questions.toArray(medium_questionsAux);
+		hard_questionsAux = hard_questions.toArray(hard_questionsAux);
+		System.out.println("ACA");
+		//QuestionSaver qSaver = new QuestionSaver(questionsFile,easy_questionsAux,medium_questionsAux,hard_questionsAux);
 	}
 	
 	/**
@@ -170,8 +181,9 @@ public class Questionnaire {
 	 * Modifica una pregunta de la base de datos.
 	 * @param org La pregunta original a modificar
 	 * @param mod La pregunta modificada
+	 * @throws IOException 
 	 */
-	public void modifyQuestion(Question org,Question mod) {
+	public void modifyQuestion(Question org,Question mod) throws IOException {
 		
 		LinkedList<Question> list;
 		

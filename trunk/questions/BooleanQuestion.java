@@ -1,5 +1,8 @@
 package questions;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 /**
  * Tipo de pregunta con respuesta verdadero o falso.
  * @author Grupo 4 de Programacion Orientada a Objetos
@@ -46,4 +49,18 @@ public class BooleanQuestion extends Question{
 		return this.answer.equals(answer);
 	}
 	
+	public void WriteToFile(BufferedWriter outFile) throws IOException{
+		outFile.write("5");
+		outFile.write(this.getLevel());
+		outFile.write("2");
+		outFile.write("1");
+		outFile.write(this.getQuestion());
+		outFile.write("Verdadero");
+		outFile.write("Falso");
+		if(this.getAnswer())
+			outFile.write("Verdadero");
+		else
+			outFile.write("Falso");
+		outFile.write(this.getScore());
+	}
 }
