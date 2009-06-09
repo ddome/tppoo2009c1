@@ -2,9 +2,9 @@
  * Creado el 07/06/2009
  *
  * TODO Para cambiar la plantilla de este archivo generado, vaya a
- * Ventana - Preferencias - Java - Estilo de código - Plantillas de código
+ * Ventana - Preferencias - Java - Estilo de cï¿½digo - Plantillas de cï¿½digo
  */
-package UI;
+package ui;
 
 import javax.swing.*;
 
@@ -20,7 +20,7 @@ import java.util.*;
  * @author Carlos
  *
  * TODO Para cambiar la plantilla de este comentario generado, vaya a
- * Ventana - Preferencias - Java - Estilo de código - Plantillas de código
+ * Ventana - Preferencias - Java - Estilo de cï¿½digo - Plantillas de cï¿½digo
  */
 public class QuestionEditPanel extends JPanel {
 
@@ -29,8 +29,8 @@ public class QuestionEditPanel extends JPanel {
 	private JLabel lblSelectQuestion = null;
 	private defaultButton btnEdit = null;
 	private defaultButton btnDelete = null;
-	private defaultButton btnSaveChanges = null;
 	private JScrollPane qListScrollPane= null;
+    
 	private Questionnaire q = null;
 	private List<String> questionsText =null;
 	private List<Question> questions = null;
@@ -53,7 +53,11 @@ public class QuestionEditPanel extends JPanel {
 		/* Valido que el usuario seleccione una pregunta
 		*/
 		if(selectedIndex == -1){
-			JOptionPane.showMessageDialog(this, "Debe seleccionar la pregunta a eliminar.", "Eliminar Pregunta",JOptionPane.OK_OPTION, null);
+			JOptionPane.showMessageDialog(this, 
+                    "Debe seleccionar la pregunta a eliminar.", 
+                    "Eliminar Pregunta",
+                    JOptionPane.OK_OPTION, 
+                    null);
 		}
 		else{
 			int confirm = JOptionPane.showConfirmDialog(this, 
@@ -65,6 +69,7 @@ public class QuestionEditPanel extends JPanel {
 			// Si confirmo el borrado
 			if(confirm == 1){
 				q.deleteQuestion(getSelectedQuestion());
+                /*TODO refresh de preguntas*/
 			}
 		}
 			
@@ -72,17 +77,31 @@ public class QuestionEditPanel extends JPanel {
 	}
 	
 	public void EditQuestionClicked(){
-		// Se busca la pregunta a editar en la lista
-		//Question question = questions[cbQuestions.getSelectedIndex()];
-		//this.add(this.getQuestionPanel(question));
+            Window parent = SwingUtilities.getWindowAncestor((Component)this);
+            Question question = getSelectedQuestion();
+            // Si no hay ninguna seleccionada, muestro mensaje
+            if(question == null){
+                JOptionPane.showMessageDialog(this, 
+                        "Debe seleccionar la pregunta a editar.", 
+                        "Editar Pregunta",
+                        JOptionPane.OK_OPTION, 
+                        null);
+            }
+            else{
+                QuestionDetailEditPanel editPanel;
+                editPanel = new QuestionDetailEditPanel(q, question);       
+
+                ((mdiParent)parent).addFrame(editPanel, "Editar Preguntas");
+        }
 	}
 	
 	public void NewQuestionClicked(){
-		
-	}
-	
-	public void  SaveChangesClicked(){
-		
+        Window parent = SwingUtilities.getWindowAncestor((Component)this);
+        
+        QuestionDetailEditPanel editPanel;
+        editPanel = new QuestionDetailEditPanel(q);       
+
+        ((mdiParent)parent).addFrame(editPanel, "Nueva Pregunta");
 	}
 	
 	/**
@@ -98,7 +117,6 @@ public class QuestionEditPanel extends JPanel {
 		this.add(this.getSelectQuestionLabel());
 		this.add(this.getEditButton());
 		this.add(this.getDeleteButton());
-		this.add(this.getSaveChangesButton());
 		this.add(this.getQuestionsListScroll(liQuestions));
 	}
 	
@@ -106,6 +124,12 @@ public class QuestionEditPanel extends JPanel {
 		if(btnNewQuestion == null){
 			btnNewQuestion = new defaultButton("Nueva Pregunta");
 			btnNewQuestion.setLocation(20,20);
+            btnNewQuestion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				QuestionEditPanel editPanel = (QuestionEditPanel)((Component)e.getSource()).getParent();
+				editPanel.NewQuestionClicked();
+			}
+		});
 		}
 		return btnNewQuestion;
 	}
@@ -168,19 +192,4 @@ public class QuestionEditPanel extends JPanel {
 		}
 		return btnDelete;
 	}	
-	
-	private defaultButton getSaveChangesButton() {
-		if (btnSaveChanges == null) {
-			btnSaveChanges = new defaultButton("Guardar");
-			btnSaveChanges.setLocation(440, 20);
-			btnSaveChanges.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					QuestionEditPanel editPanel = (QuestionEditPanel)((Component)e.getSource()).getParent();
-					editPanel.SaveChangesClicked();
-				}
-			});
-			btnSaveChanges.setEnabled(false);
-		}
-		return btnSaveChanges;
-	}
 }

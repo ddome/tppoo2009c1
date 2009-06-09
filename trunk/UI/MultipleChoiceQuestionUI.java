@@ -2,9 +2,9 @@
  * Creado el 07/06/2009
  *
  * TODO Para cambiar la plantilla de este archivo generado, vaya a
- * Ventana - Preferencias - Java - Estilo de código - Plantillas de código
+ * Ventana - Preferencias - Java - Estilo de cï¿½digo - Plantillas de cï¿½digo
  */
-package UI;
+package ui;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -16,7 +16,7 @@ import questions.*;
  * @author Carlos
  *
  * TODO Para cambiar la plantilla de este comentario generado, vaya a
- * Ventana - Preferencias - Java - Estilo de código - Plantillas de código
+ * Ventana - Preferencias - Java - Estilo de cï¿½digo - Plantillas de cï¿½digo
  */
 public class MultipleChoiceQuestionUI extends JPanel {
 
