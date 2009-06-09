@@ -169,6 +169,23 @@ public class Questionnaire {
 		
 		SaveModification();
 	}
+	
+	public boolean containsQuestion(Question q){
+		
+		LinkedList<Question> list;
+		
+		switch(q.getLevel()) {
+			case(Question.LEVEL_EASY ):
+				list = easy_questions;
+				break;
+			case(Question.LEVEL_MEDIUM):
+				list = medium_questions;
+				break;
+			default:
+				list = hard_questions;				
+		}
+		return list.contains(q);		
+	}
 
 	/**
 	 * Modifica una pregunta de la base de datos.
