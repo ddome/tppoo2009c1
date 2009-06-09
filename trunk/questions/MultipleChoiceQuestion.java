@@ -56,14 +56,24 @@ public class MultipleChoiceQuestion extends ChoiceQuestion{
 		String[] choices = this.getChoices();
 		Integer[] answers = this.getAnswers();
 		outFile.write("4");
-		outFile.write(this.getLevel());
-		outFile.write(choices.length);
-		outFile.write(answers.length);
+		outFile.newLine();
+		outFile.write(Integer.valueOf(this.getLevel()).toString());
+		outFile.newLine();
+		outFile.write(Integer.valueOf(choices.length).toString());
+		outFile.newLine();
+		outFile.write(Integer.valueOf(answers.length).toString());
+		outFile.newLine();
 		outFile.write(this.getQuestion());
-		for(i=0;i<choices.length;i++)
+		outFile.newLine();
+		for(i=0;i<choices.length;i++){
 			outFile.write(choices[i]);
-		for(i=0;i<answers.length;i++)
+			outFile.newLine();
+		}
+		for(i=0;i<answers.length;i++){
 			outFile.write(choices[answers[i]]);
-		outFile.write(this.getScore());
+			outFile.newLine();
+		}
+		outFile.write(Integer.valueOf(this.getScore()).toString());
+		outFile.newLine();
 	}
 }

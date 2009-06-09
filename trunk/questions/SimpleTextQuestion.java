@@ -32,13 +32,21 @@ public class SimpleTextQuestion extends Question {
 	}
 		
 	public void WriteToFile(BufferedWriter outFile) throws IOException{
-		outFile.write("1");	
-		outFile.write(this.getLevel());
 		outFile.write("1");
+		outFile.newLine();
+		outFile.write(Integer.valueOf(this.getLevel()).toString());
+		outFile.newLine();
 		outFile.write("1");
+		outFile.newLine();
+		outFile.write("1");
+		outFile.newLine();
 		outFile.write(this.getQuestion());
+		outFile.newLine();
 		outFile.write(this.getAnswer());
+		outFile.newLine();
 		outFile.write(this.getAnswer());
-		outFile.write(this.getScore());
+		outFile.newLine();
+		outFile.write(Integer.valueOf(this.getScore()).toString());
+		outFile.newLine();
 	}
 }
