@@ -19,12 +19,12 @@ public class TestQuestion {
 		
 		String choices1[] = {"uno","dos","tres"};
         String choices2[] = {"choice1","choice2","choice3"};
-        Integer answers[] = {1,3};
+        String answers[] = {"choice1","choice3"};
         
 		q1 = new BooleanQuestion("BooleanTest", true, Question.LEVEL_EASY,10);
 		q2 = new SimpleTextQuestion("TextTest", "Peron", Question.LEVEL_EASY,10);
 		q3 = new SimpleNumberQuestion("NumberTest",455,Question.LEVEL_EASY,10);
-        q4 = new SingleChoiceQuestion("SingleChoiceTest", choices1,1, Question.LEVEL_EASY,10 );
+        q4 = new SingleChoiceQuestion("SingleChoiceTest", choices1,"uno", Question.LEVEL_EASY,10 );
         q5 = new MultipleChoiceQuestion("MulChoiceTest",choices2, answers, Question.LEVEL_EASY,10 );				
 	  
 	}
@@ -34,12 +34,12 @@ public class TestQuestion {
 		
 		String choices1_copy[] = {"uno","dos","tres"};
         String choices2_copy[] = {"choice1","choice2","choice3"};
-        Integer answers_copy[] = {1,3};
+        String answers_copy[] = {"choice1","choice3"};
 		
 		BooleanQuestion q1_copy = new BooleanQuestion("BooleanTest", true, Question.LEVEL_EASY,10);
 		SimpleTextQuestion q2_copy = new SimpleTextQuestion("TextTest", "Peron", Question.LEVEL_EASY,10);
 		SimpleNumberQuestion q3_copy = new SimpleNumberQuestion("NumberTest",455,Question.LEVEL_EASY,10);
-		SingleChoiceQuestion q4_copy = new SingleChoiceQuestion("SingleChoiceTest", choices1_copy,1, Question.LEVEL_EASY,10 );
+		SingleChoiceQuestion q4_copy = new SingleChoiceQuestion("SingleChoiceTest", choices1_copy,"uno", Question.LEVEL_EASY,10 );
 		MultipleChoiceQuestion q5_copy = new MultipleChoiceQuestion("MulChoiceTest",choices2_copy, answers_copy, Question.LEVEL_EASY,10 );
 		
 		Assert.assertTrue(this.q1.equals(q1_copy));

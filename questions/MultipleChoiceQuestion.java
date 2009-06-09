@@ -5,35 +5,33 @@ import java.util.*;
 
 public class MultipleChoiceQuestion extends ChoiceQuestion{
 
-	private LinkedList<Integer> answers = new LinkedList<Integer>();
-	
-	public MultipleChoiceQuestion(String question,String choices[],Integer answers[], int level, int score){
+	private HashSet<String> answers = new HashSet<String>();
+		
+	public MultipleChoiceQuestion(String question,String choices[],String answers[], int level, int score){
 		super(question,choices,level,score);
 		
-		for( Integer answer: answers ) {
-			//Verifico que cada respuesta este dentro de las opciones disponibles
-			if( answer < choices.length + 1 )
-				this.answers.add(answer);
+		for( String answer: answers) {	
+			this.addAnswer(answer);
 		}		
 	}
 	
-	public void addAnswer(int answer){
-		if( answer < choices.length + 1 )
-			this.answers.add(new Integer(answer));
+	public void addAnswer(String answer){
+		if( super.choices.contains(answer)  )
+			this.answers.add(answer);	
 	}
 	
 	public boolean isCorrect(Object answers) {
-		if( answers instanceof Integer[] )
-			return isCorrect((Integer[])answers);
+		if( answers instanceof String[] )
+			return isCorrect((String[])answers);
 		else
 			return false;
 	}
 		
-	public boolean isCorrect(Integer answers[]){
+	public boolean isCorrect(String answers[]){
 		
 		boolean ret = true;
 		
-		for( Integer answer: answers ) {
+		for( String answer: answers ) {
 			if( !this.answers.contains(answer) ){
 				ret = false;
 				break;
@@ -43,9 +41,9 @@ public class MultipleChoiceQuestion extends ChoiceQuestion{
 		return ret;
 	}
 	
-	public Integer[] getAnswers(){
+	public String[] getAnswers(){
 		
-		Integer aux[] = new Integer[(answers.size())];	
+		String aux[] = new String[(answers.size())];	
 		aux = answers.toArray(aux);
 		
 		return aux;

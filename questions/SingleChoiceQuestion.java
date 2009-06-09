@@ -5,16 +5,17 @@ import java.io.IOException;
 
 public class SingleChoiceQuestion extends ChoiceQuestion{
 	
-	// answer not set
-	private Integer answer = -1;
+	private String answer;
 	
-	public SingleChoiceQuestion(String question,String choices[],Integer answer, int level,int score){
+	public SingleChoiceQuestion(String question,String choices[],String answer, int level,int score){
 		super(question,choices,level,score);
-		this.answer = answer;	
+		
+		this.setAnswer(answer);
 	}
 	
-	public void setAnswer(Integer answer){
-		if( answer < this.choices.length)
+	public void setAnswer(String answer){
+		
+		if( super.choices.contains(answer))
 			this.answer = answer;
 	}
 	
@@ -26,7 +27,7 @@ public class SingleChoiceQuestion extends ChoiceQuestion{
 		return this.answer.equals(answer);
 	}
 	
-	public Integer getAnswer(){
+	public String getAnswer(){
 		return answer;
 	}
 	

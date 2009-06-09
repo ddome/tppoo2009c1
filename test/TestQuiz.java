@@ -18,20 +18,20 @@ public class TestQuiz {
 		
 		String choices1[] = {"uno","dos","tres"};
         String choices2[] = {"choice1","choice2","choice3"};
-        Integer answers[] = {1,3};
+        String answers[] = {"choice1","choice3"};
      
         aarray[0] = new Boolean(true);
         aarray[1] = new String("Test");
         aarray[2] = new Integer(455);
-        aarray[3] = new Integer(1);
+        aarray[3] = new String("uno");
         aarray[4] = answers;      
         
         
 		qarray[0] = new BooleanQuestion("BooleanTest", (Boolean)aarray[0], Question.LEVEL_EASY,10);
 		qarray[1] = new SimpleTextQuestion("TextTest", (String)aarray[1], Question.LEVEL_EASY,10);
 		qarray[2] = new SimpleNumberQuestion("NumberTest",(Integer)aarray[2],Question.LEVEL_EASY,10);
-        qarray[3] = new SingleChoiceQuestion("SingleChoiceTest", choices1,(Integer)aarray[3], Question.LEVEL_EASY,10 );
-        qarray[4] = new MultipleChoiceQuestion("MulChoiceTest",choices2,(Integer[])aarray[4], Question.LEVEL_EASY,10 );				
+        qarray[3] = new SingleChoiceQuestion("SingleChoiceTest", choices1,(String)aarray[3], Question.LEVEL_EASY,10 );
+        qarray[4] = new MultipleChoiceQuestion("MulChoiceTest",choices2,(String[])aarray[4], Question.LEVEL_EASY,10 );				
 	    
         try {
         	quiz = new Quiz("Test",Question.LEVEL_EASY,qarray,new File("testdata/ranking"));
