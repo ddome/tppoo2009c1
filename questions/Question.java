@@ -119,8 +119,4 @@ public abstract class Question{
 	public String toString(){
 		return this.question;
 	}
-	
-	/*public void WriteToFile(BufferedWriter outFile) throws IOException{
-		
-	}*/
 }
