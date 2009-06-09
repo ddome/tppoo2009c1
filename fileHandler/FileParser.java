@@ -176,8 +176,9 @@ public class FileParser{
 		
 		optionsAux = new String[options.size()];
 		optionsAux = options.toArray(optionsAux);
+		
 		answersAux = new String[answer.size()];
-		answersAux = options.toArray(answersAux);
+		answersAux = answer.toArray(answersAux);
 		return new MultipleChoiceQuestion(question,optionsAux,answersAux,level,score);
 	}
 	
