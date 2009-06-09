@@ -1,17 +1,21 @@
 package player;
 
+
+/**
+ * Contiene informacion a cerca de un juego terminado de un usuario.
+ * @author Grupo 4 de Programacion Orientada a Objetos
+ *
+ */
 public class Game {
 	private String user;
 	private int score;
 	private int level;
-	public Game(){
-		
+	public Game(){		
 	}
+	
 	public Game(String user,int level) {
-		
 		this.user = user;
-		this.level = level;
-		
+		this.level = level;	
 	}
 
 	public String getUser() {
