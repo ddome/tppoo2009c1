@@ -1,9 +1,4 @@
-/*
- * Creado el 07/06/2009
- *
- * TODO Para cambiar la plantilla de este archivo generado, vaya a
- * Ventana - Preferencias - Java - Estilo de c�digo - Plantillas de c�digo
- */
+
 package UI;
 
 import javax.swing.JPanel;
@@ -12,12 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import questions.*;
-/**
- * @author Carlos
- *
- * TODO Para cambiar la plantilla de este comentario generado, vaya a
- * Ventana - Preferencias - Java - Estilo de c�digo - Plantillas de c�digo
- */
+
+
 public class BooleanQuestionUI extends JPanel {
 
 	private JLabel lblQuestion = null;

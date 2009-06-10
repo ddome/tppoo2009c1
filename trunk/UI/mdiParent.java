@@ -36,6 +36,25 @@ public class mdiParent extends JFrame {
 	private Questionnaire q = null;
 	private Quiz quiz = null;
 	
+    	/**
+	 * This is the default constructor
+	 */
+	public mdiParent(Questionnaire q) {
+		super();
+		this.q = q;
+		initialize();
+	}
+	/**
+	 * This method initializes this
+	 * 
+	 * @return void
+	 */
+	private void initialize() {
+		this.setSize(874, 484);
+		this.setContentPane(getJContentPane());
+		this.setTitle("Trivia");
+	}
+    
 	/**
 	 * This method initializes jDesktopPane	
 	 * 	
@@ -182,25 +201,6 @@ public class mdiParent extends JFrame {
          }  
 	} 
     
-
-	/**
-	 * This is the default constructor
-	 */
-	public mdiParent(Questionnaire q) {
-		super();
-		this.q = q;
-		initialize();
-	}
-	/**
-	 * This method initializes this
-	 * 
-	 * @return void
-	 */
-	private void initialize() {
-		this.setSize(874, 484);
-		this.setContentPane(getJContentPane());
-		this.setTitle("Trivia");
-	}
 	/**
 	 * This method initializes jContentPane
 	 * 
