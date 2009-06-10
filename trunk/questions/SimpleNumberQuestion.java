@@ -21,7 +21,7 @@ public class SimpleNumberQuestion extends Question {
 	 */
 	public SimpleNumberQuestion(String question, Number answer, int level, int score){
 		super(question,level,score);
-		this.answer = answer;
+		this.answer = truncate(answer);
 	
 	}
 	/**
@@ -48,7 +48,7 @@ public class SimpleNumberQuestion extends Question {
 	}
 	
 	public boolean isCorrect(Number answer){
-		return this.answer.equals(answer);
+		return this.answer.equals(truncate(answer));
 	}
 	
 	/**
@@ -74,4 +74,12 @@ public class SimpleNumberQuestion extends Question {
 		outFile.write(Integer.valueOf(this.getScore()).toString());
 		outFile.newLine();
 	}
+	
+	private double truncate(Number num){
+		
+		double aux = (long)(num.doubleValue() * 10000);
+		return aux/10000;
+		
+	}
+	
 }
