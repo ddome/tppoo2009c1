@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import questions.*;
 
-public class SimpleNumberQuestionEditUI extends JPanel implements Editable{
+public class SimpleNumberQuestionEditUI extends JPanel implements Editable,Validable{
 
 	private javax.swing.JPanel jContentPane = null;
 	private JTextField txtQuestion = null;
