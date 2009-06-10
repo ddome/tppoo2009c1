@@ -8,10 +8,12 @@ import questions.*;
 
 public class HighScoresPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private javax.swing.JPanel jContentPane = null;
     private JLabel lblScore = null;
 
 	private Questionnaire q = null;
+
     
     private int difficulty = 0;
 	/**
@@ -49,8 +51,13 @@ public class HighScoresPanel extends JPanel {
 	private void addResults(){
 		JLabel lblScore;
         /************ ACA METER LOS NOMBRES CONCATENADOS CON LOS USUARIOS ******/
-        String[] Scores = {"player1     70", "player2    18"};
-
+        //String[] Scores = {"player1     70", "player2    18"};
+		String Scores[];
+		try{
+			Scores=q.getMaxScores(difficulty);
+		}catch(Exception e){
+			return;
+		}
         for(int i = 0; i < Scores.length; i++){
             lblScore = new JLabel();
             lblScore.setText(Scores[i]);

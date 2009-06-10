@@ -16,7 +16,7 @@ import java.io.EOFException;
  *
  */
 public class Ranking {
-	private final int MAX_TOP_PLAYERS = 10;
+	public final int MAX_TOP_PLAYERS = 10;
 
 	private Game ranking_easy[] = new Game[MAX_TOP_PLAYERS];
 	private Game ranking_medium[] = new Game[MAX_TOP_PLAYERS];
