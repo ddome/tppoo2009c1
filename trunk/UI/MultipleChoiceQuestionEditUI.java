@@ -57,12 +57,6 @@ public class MultipleChoiceQuestionEditUI extends JPanel implements Editable{
 		initialize();
 	}
 	
-	/*public Question getFinalQuestion(){
-		/*SimpleTextQuestion newQuestion;
-		newQuestion = new SimpleTextQuestion(getQuestion(), getAnswer(), 1, 1);
-		return (Question)newQuestion;*/
-	//}
-
 	/**
 	 * This method initializes this
 	 * 
@@ -358,7 +352,7 @@ public class MultipleChoiceQuestionEditUI extends JPanel implements Editable{
     private defaultButton getIsNotCorrectButton(){
 		if (btnIsNotCorrect == null) {
 			btnIsNotCorrect = new defaultButton("Es Incorrecta");
-			btnIsNotCorrect.setLocation(475, 130);
+			btnIsNotCorrect.setLocation(475, 170);
             btnIsNotCorrect.setVisible(true);
 			btnIsNotCorrect.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
