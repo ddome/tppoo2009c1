@@ -246,6 +246,35 @@ public class Questionnaire {
 		saver.close();
 	}
 	
+	/**
+	 * 
+	 * @return La lista con los TOP 10 por nivel.
+	 */
+	public String[] getMaxScores(int level)throws RankingFileException,Exception{
+		String[] retTop;
+		Game[] top;
+		Ranking rank = new Ranking(rankingFile);
+		int i;
+		switch(level){
+			case(Question.LEVEL_EASY ):
+				top=rank.getEasyTop();
+				break;
+			case(Question.LEVEL_MEDIUM):
+				top=rank.getMediumTop();
+				break;
+			case(Question.LEVEL_HARD):
+				top=rank.getHardTop();
+				break;
+			default: 
+				throw new LevelException("Nivel incorrecto");
+		}
+		retTop= new String[top.length+1];
+		for(i=0;i<top.length;i++){
+			retTop[i] =Integer.valueOf(top[i].getScore()).toString().concat("  ->  " + top[i].getUser());
+		}
+		
+		return retTop;
+	}
 	
 	
 }
