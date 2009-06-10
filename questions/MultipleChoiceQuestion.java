@@ -46,7 +46,6 @@ public class MultipleChoiceQuestion extends ChoiceQuestion{
 	}
 	
 	public boolean isCorrect(String answers[]){
-		
 		boolean ret = true;
 		
 		for( String answer: answers ) {

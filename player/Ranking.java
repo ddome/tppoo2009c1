@@ -53,7 +53,6 @@ public class Ranking {
 		Game ranking[];
 		Game aux;
 		int i;
-		
 		switch(game.getLevel()) {
 			case(Question.LEVEL_EASY ):
 				ranking = ranking_easy;
@@ -78,11 +77,9 @@ public class Ranking {
 		}
 		
 		if( i < MAX_TOP_PLAYERS && ranking[i]==null) {
-			
 			ranking[i] = new Game(game.getUser(),game.getLevel());
 			ranking[i].setScore(game.getScore());
 		}
-
 		WriteScores();
 	
 	}

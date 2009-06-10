@@ -50,13 +50,11 @@ public class HighScoresPanel extends JPanel {
     }
 	private void addResults(){
 		JLabel lblScore;
-        /************ ACA METER LOS NOMBRES CONCATENADOS CON LOS USUARIOS ******/
-        //String[] Scores = {"player1     70", "player2    18"};
-		String Scores[];
+		String Scores[]=null;
 		try{
 			Scores=q.getMaxScores(difficulty);
-		}catch(Exception e){
-			return;
+		}catch(Exception ex){
+			JOptionPane.showMessageDialog(this,"Error al leer los rankings."+ ex.getMessage());
 		}
         for(int i = 0; i < Scores.length; i++){
             lblScore = new JLabel();
