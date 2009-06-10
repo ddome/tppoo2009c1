@@ -185,14 +185,26 @@ public class Ranking {
 		}
 	}
 	
+	/**
+	 * Devuele el TOP 10 de los usuarios que jugaron en modo facil
+	 * @return Un arreglo de tipo Game
+	 */
 	public Game[] getEasyTop(){
 		return ranking_easy.clone();
 	}
 	
+	/**
+	 * Devuele el TOP 10 de los usuarios que jugaron en modo intermedio
+	 * @return Un arreglo de tipo Game
+	 */
 	public Game[] getMediumTop(){
 		return ranking_medium.clone();
 	}
 	
+	/**
+	 * Devuele el TOP 10 de los usuarios que jugaron en modo dificil
+	 * @return Un arreglo de tipo Game
+	 */
 	public Game[] getHardTop(){
 		return ranking_hard.clone();
 	}

@@ -27,6 +27,12 @@ public abstract class ChoiceQuestion extends Question {
 			this.choices.add(choice);
 		}		
 	}
+	
+	/**
+	 * Determina si dos preguntas del tipo ChoiceQuestion son iguals. Esto se hace
+	 * comparando no solo la pregunta si no tambien las posibles respuestas.
+	 * @param o Pregunta a ser comparada.
+	 * @return true si son iguales. false en caso contrario.*/
 	@Override
 	public boolean equals(Object o) {
 		
@@ -41,7 +47,7 @@ public abstract class ChoiceQuestion extends Question {
 	}
 	
 	/**
-	 *
+	 * Devuelve un arreglo del tipo String con todas las posibles opciones.
 	 * @return Un arreglo con las opciones a responder
 	 */
 	public String[] getChoices(){

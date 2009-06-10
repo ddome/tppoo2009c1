@@ -114,6 +114,8 @@ public class Questionnaire {
 	}
 	
 	/**
+	 * Devuelve una lista con preguntas segun el nivel de dificultad especificado
+	 * en level.
 	 * @param level El nivel de dificultad de la lista a devolver
 	 * @return Una lista de preguntas de la dificultad pedida
 	 */
@@ -247,8 +249,12 @@ public class Questionnaire {
 	}
 	
 	/**
-	 * 
+	 * Retorna una Array con el TOP 10 de usuarios y sus respectivos puntajes segun
+	 * el nivel especificado.
+	 * @param level Nivel de dificultad
 	 * @return La lista con los TOP 10 por nivel.
+	 * @throws RankingFileException El archivo de ranking esta corrupto.
+	 * @throws Exception
 	 */
 	public String[] getMaxScores(int level)throws RankingFileException,Exception{
 		String[] retTop;

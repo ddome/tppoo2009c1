@@ -8,6 +8,11 @@ import javax.swing.JFrame;
 import fileHandler.*;
 import UI.*;
 
+/**
+ * Tipo de pregunta con respuesta verdadero o falso.
+ * @author Grupo 4 de Programacion Orientada a Objetos
+ *
+ */
 public class Main {
 
         public static void main( String[] args) throws Exception,FileParserException{
@@ -22,8 +27,8 @@ public class Main {
                 		if(!ranking.exists() )
                 			ranking.createNewFile();
                 		
-                		Questionnaire q = new Questionnaire(questions, ranking);      
-                        
+            			Questionnaire q = new Questionnaire(questions, ranking);      
+
                         mdiParent mainWindow = new mdiParent(q);
                         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         mainWindow.setVisible(true);

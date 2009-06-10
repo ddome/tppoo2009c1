@@ -13,6 +13,11 @@ import questions.SimpleNumberQuestion;
 import questions.SimpleTextQuestion;
 import questions.SingleChoiceQuestion;
 
+/**
+ * Tipo de pregunta con respuesta verdadero o falso.
+ * @author Grupo 4 de Programacion Orientada a Objetos
+ *
+ */
 public class QuestionSaver {
 	BufferedWriter outFile;
 	

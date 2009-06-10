@@ -25,7 +25,7 @@ public class SimpleTextQuestion extends Question {
 	}
 	
 	/**
-	 * 
+	 * Setea cual es la respuesta a la pregunta.
 	 * @param answer La nueva respuesta
 	 */
 	public void setAnswer(String answer){
@@ -40,6 +40,11 @@ public class SimpleTextQuestion extends Question {
 		return new String(this.answer);
 	}
 	
+	/**
+	 * Devuelve true si la respuesta dada era correcta
+	 * @param answer La respuesta a verificar
+	 * @return Retorna true si la respuesta era correcta, false en caso contrario.
+	 */
 	@Override
 	public boolean isCorrect(Object answer){
 		if( answer instanceof String ) 
@@ -48,6 +53,11 @@ public class SimpleTextQuestion extends Question {
 			return false;
 	}
 	
+	/**
+	 * Devuelve true si la respuesta dada era correcta
+	 * @param answer La respuesta a verificar
+	 * @return Retorna true si la respuesta era correcta, false en caso contrario.
+	 */
 	public boolean isCorrect(String answer){
 		return this.answer.toLowerCase().equals(answer.toLowerCase());
 	}

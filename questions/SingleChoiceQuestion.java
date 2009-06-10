@@ -37,17 +37,27 @@ public class SingleChoiceQuestion extends ChoiceQuestion{
 			this.answer = answer;
 	}
 	
+	/**
+	 * Devuelve true si la respuesta dada era correcta
+	 * @param answer La respuesta a verificar
+	 * @return Retorna true si la respuesta era correcta, false en caso contrario.
+	 */
 	@Override
 	public boolean isCorrect(Object answer){
 		return this.answer.equals(answer);
 	}
 	
+	/**
+	 * Devuelve true si la respuesta dada era correcta
+	 * @param answer La respuesta a verificar
+	 * @return Retorna true si la respuesta era correcta, false en caso contrario.
+	 */
 	public boolean isCorrect(Integer answer){
 		return this.answer.equals(answer);
 	}
 	
 	/**
-	 * 
+	 * Devuelve la respuesta asosiada a la instacia.
 	 * @return La respuesta asociada
 	 */
 	public String getAnswer(){
