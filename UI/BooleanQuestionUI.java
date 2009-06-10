@@ -26,8 +26,8 @@ public class BooleanQuestionUI extends JPanel {
 		initialize();
 	}
 	
-	public Boolean getAnswer(){
-		return this.rbTrue.isSelected();
+	public Boolean getAnswer() throws ValidationException{
+		return this.rbTrue.isSelected() || this.rbFalse.isSelected();
 	}
 	/**
 	 * This method initializes this

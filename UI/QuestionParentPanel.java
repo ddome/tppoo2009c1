@@ -49,7 +49,8 @@ public class QuestionParentPanel extends JPanel {
 						parentPanel.SetNextQuestion();	
 					}
 					catch(Exception ex){
-						System.out.println(ex.getMessage());
+						JOptionPane.showMessageDialog(parentPanel, 
+                                ex.getMessage());
 					}
 					
 				}

@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import questions.*;
+import java.util.*;
 
 /**
  * @author Carlos
@@ -32,9 +33,23 @@ public class MultipleChoiceQuestionUI extends JPanel {
 		this.quiz =quiz;
 		initialize();
 	}
-	public int[] getAnswer(){
-		//return this.rbTrue.isSelected();
-		int[] resp = {1,2};
+    
+	public String[] getAnswer() throws ValidationException{
+        int count = 0;
+		List<String> list = new LinkedList<String>();
+        for(JCheckBox cb: cbChoices){
+            if(cb.isSelected()){
+                list.add(cb.getText());
+                count++;
+            }
+        }
+        /* Si no quedo ninguna seleccionada lanzo excepcion
+        */
+        if(count == 0){
+            throw new ValidationException("Seleccione al menos una opcion.");
+        }
+        String[] resp = new String[list.size()];
+        resp = list.toArray(resp);
 		return resp;
 	}
 	/**
