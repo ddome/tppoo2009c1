@@ -67,7 +67,7 @@ public class mdiParent extends JFrame {
 					                    parent,
 					                    "Ingrese la dificultad de juego",
 					                    "Nuevo Juego",
-					                    JOptionPane.QUESTION_MESSAGE,
+					                    JOptionPane.INFORMATION_MESSAGE,
 					                    null,
 					                    possibilities,
 					                    possibilities[0]);
@@ -199,7 +199,7 @@ public class mdiParent extends JFrame {
 	private void initialize() {
 		this.setSize(874, 484);
 		this.setContentPane(getJContentPane());
-		this.setTitle("JFrame");
+		this.setTitle("Trivia");
 	}
 	/**
 	 * This method initializes jContentPane

@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import questions.*;
 
-public class SimpleNumberQuestionEditUI extends JPanel {
+public class SimpleNumberQuestionEditUI extends JPanel implements Editable{
 
 	private javax.swing.JPanel jContentPane = null;
 	private JTextField txtQuestion = null;
@@ -35,13 +35,18 @@ public class SimpleNumberQuestionEditUI extends JPanel {
 		initialize();
 	}
 	
-	public Question getFinalQuestion(){
+	public Question getEditedQuestion(){
 		SimpleNumberQuestion newQuestion;
-		newQuestion = new SimpleNumberQuestion(getQuestion(), 
-                getAnswer(),
-                getDifficultyCode(cmbLevels.getSelectedItem().toString()),
-                1);
-		return (Question)newQuestion;
+        try{
+            newQuestion = new SimpleNumberQuestion(getQuestion(), 
+                    getAnswer(),
+                    getDifficultyCode(cmbLevels.getSelectedItem().toString()),
+                    getScore());
+            return (Question)newQuestion;
+        }
+		catch(Exception ex){
+            return null;
+        }
 	}
 
 	/**
@@ -59,7 +64,12 @@ public class SimpleNumberQuestionEditUI extends JPanel {
         this.add(this.getLevelLabel());
         this.add(this.getScoreLabel());
 	}
-	
+	    
+    private int getScore() throws NumberFormatException{
+        Integer score = Integer.valueOf(txtScore.getText().trim());
+        return score;
+    }
+    
 	private JTextField getQuestionTextBox(){
 		if(txtQuestion == null){
 			txtQuestion = new JTextField();
@@ -92,8 +102,8 @@ public class SimpleNumberQuestionEditUI extends JPanel {
 		return getQuestionTextBox().getText();
 	}
 	
-	private int getAnswer(){
-		int answer = Integer.valueOf(getAnswerTextBox().getText());
+	private double getAnswer() throws NumberFormatException{
+		double answer = Double.valueOf(getAnswerTextBox().getText());
         return answer;
 	}
     
