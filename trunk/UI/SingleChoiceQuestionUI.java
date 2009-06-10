@@ -35,8 +35,19 @@ public class SingleChoiceQuestionUI extends JPanel {
 		this.buttonGroup = new ButtonGroup();
 		initialize();
 	}
-	public int getAnswer(){
-		return 1;
+	public String getAnswer() throws ValidationException{
+        String answer = null;
+        Boolean hasAnswer = false;
+        for(JRadioButton rb: rbChoices){
+            if(rb.isSelected()){
+                answer = rb.getText();
+                hasAnswer = true;
+            }
+        }
+        if(!hasAnswer){
+            throw new ValidationException("Debe seleccionar una opcion");
+        }
+		return answer;
 	}
 	/**
 	 * This method initializes this

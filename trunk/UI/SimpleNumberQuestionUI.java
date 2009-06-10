@@ -32,9 +32,14 @@ public class SimpleNumberQuestionUI extends JPanel {
 		initialize();
 	}
 	
-	public int getAnswer(){
-		//return this.txtAnswer.toString();
-		return 1;
+	public Double getAnswer() throws ValidationException{
+		try{
+            double answer = Double.valueOf(txtAnswer.getText().trim());
+            return answer;
+        }
+        catch(NumberFormatException ex){
+            throw new ValidationException("La respuesta debe ser numerica.");
+        }
 	}
 	/**
 	 * This method initializes this
