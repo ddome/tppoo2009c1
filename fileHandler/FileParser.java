@@ -167,7 +167,7 @@ public class FileParser{
 		int size=answer.size(),i;
 		Integer[] answerIndexes = new Integer[size];
 		
-		if( options.size()<=1 || answer.size()<=1 || score < 0 || level < 0 || level > 2 )
+		if( options.size()<=1 || answer.size()<1 || score < 0 || level < 0 || level > 2 )
 			throw new FileParserException("Archivo de preguntas mal formado.");
 		
 		for(i=0;i<size;i++){
