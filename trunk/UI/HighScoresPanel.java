@@ -1,44 +1,61 @@
-/*
- * Creado el 07/06/2009
- *
- * TODO Para cambiar la plantilla de este archivo generado, vaya a
- * Ventana - Preferencias - Java - Estilo de c�digo - Plantillas de c�digo
- */
+
 package UI;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
-import javax.swing.JLabel;
-/**
- * @author Carlos
- *
- * TODO Para cambiar la plantilla de este comentario generado, vaya a
- * Ventana - Preferencias - Java - Estilo de c�digo - Plantillas de c�digo
- */
+import javax.swing.*;
+import questions.*;
+
 public class HighScoresPanel extends JPanel {
 
 	private javax.swing.JPanel jContentPane = null;
-	private JLabel[] Scores = null;
-	private JLabel jLabel = null;
+    private JLabel lblScore = null;
+
+	private Questionnaire q = null;
+    
+    private int difficulty = 0;
 	/**
 	 * This is the default constructor
 	 */
-	public HighScoresPanel() {
+	public HighScoresPanel(Questionnaire q, int difficulty) {
 		super();
+		this.q = q;
+        this.difficulty = difficulty;
 		initialize();
 	}
+
 	/**
 	 * This method initializes this
 	 * 
 	 * @return void
 	 */
 	private void initialize() {
-		jLabel = new JLabel();
+		this.setSize(650, 350);
 		this.setLayout(null);
-		this.setSize(650,400);
-		jLabel.setBounds(168, 92, 346, 69);
-		jLabel.setText("puntajes");
-		this.add(jLabel, null);
+        this.add(getScoreLabel());
+        addResults();
 	}
 	
-}
+    private JLabel getScoreLabel(){
+        if(lblScore == null){
+            String text;
+            lblScore =new JLabel();
+            text = "Puntajes Maximos";
+            lblScore.setText(text);
+            lblScore.setBounds(15, 5, 400, 25);            
+        }
+        return lblScore;
+    }
+	private void addResults(){
+		JLabel lblScore;
+        /************ ACA METER LOS NOMBRES CONCATENADOS CON LOS USUARIOS ******/
+        String[] Scores = {"player1     70", "player2    18"};
+
+        for(int i = 0; i < Scores.length; i++){
+            lblScore = new JLabel();
+            lblScore.setText(Scores[i]);
+            lblScore.setBounds(45,30+i*25,580, 20 );
+            this.add(lblScore);
+        }
+	}
+ }  //  @jve:decl-index=0:visual-constraint="20,5"

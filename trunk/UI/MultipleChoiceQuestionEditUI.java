@@ -7,7 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Component;
 
-public class MultipleChoiceQuestionEditUI extends JPanel implements Editable{
+public class MultipleChoiceQuestionEditUI extends JPanel 
+                                        implements Editable, Validable{
 
 	private javax.swing.JPanel jContentPane = null;
 	private JTextField txtQuestion = null;
@@ -103,6 +104,20 @@ public class MultipleChoiceQuestionEditUI extends JPanel implements Editable{
             return null;
         }
 	}
+    
+    public Boolean Validate(){
+        Integer score;
+        try{
+            score = getScore();
+        }
+        catch(NumberFormatException ex){
+            return false;
+        }
+        Boolean resp =  txtQuestion.getText().trim().length() > 0 
+                && choicesList.size()> 0 && answersList.size() > 0;
+        
+        return resp;
+    }
         
     private int getScore() throws NumberFormatException{
         Integer score = Integer.valueOf(txtScore.getText().trim());

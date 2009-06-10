@@ -96,19 +96,25 @@ public class mdiParent extends JFrame {
 		                    parent,
 		                    "Ingrese su nombre",
 		                    "Nuevo Juego",
-		                    JOptionPane.QUESTION_MESSAGE,
+		                    JOptionPane.INFORMATION_MESSAGE,
 		                    null,
 		                    null,
 		                    null);
-					try{
-						((mdiParent)parent).quiz = ((mdiParent)parent).q.generateQuiz(userName, level);
-						QuestionParentPanel p = new QuestionParentPanel(((mdiParent)parent).quiz);
-						p.setSize(650,400);
-						((mdiParent)parent).addFrame(p, "Quiz!");
-					}
-					catch(Exception ex){
-						System.out.println(ex.getMessage());						
-					}		
+                    if(userName.trim().length() > 0){
+                    	try{
+                            ((mdiParent)parent).quiz = ((mdiParent)parent).q.generateQuiz(userName, level);
+                            QuestionParentPanel p = new QuestionParentPanel(((mdiParent)parent).quiz);
+                            p.setSize(650,400);
+                            ((mdiParent)parent).addFrame(p, "Quiz!");
+                        }
+                        catch(Exception ex){
+                            JOptionPane.showMessageDialog(parent, ex.getMessage());						
+                        }	
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(parent, "El nombre no puede estar vacio");
+                    }
+	
 				}
 				
 				public int getDifficultyCode(String difficulty){

@@ -50,20 +50,27 @@ public class QuestionDetailEditPanel extends JPanel {
 	
 	public void  SaveChangesClicked(){
         Window parent = SwingUtilities.getWindowAncestor((Component)this);
-        Question editedQuestion = ((Editable)questionPanel).getEditedQuestion();
-        
-        if(isNewQuestion){
-            q.newQuestion(editedQuestion);
+        if(!((Validable)questionPanel).Validate()){
+            JOptionPane.showMessageDialog(this, 
+                    "Hay campos incorrectos en el formulario");
         }
         else{
-            q.modifyQuestion(question, editedQuestion);
+            Question editedQuestion = ((Editable)questionPanel).getEditedQuestion();
+
+            if(isNewQuestion){
+                q.newQuestion(editedQuestion);
+            }
+            else{
+                q.modifyQuestion(question, editedQuestion);
+            }
+
+            /* Se vuelve a la ventana principal de edicion
+            */
+            QuestionEditPanel editPanel;
+            editPanel = new QuestionEditPanel(q);       
+            ((mdiParent)parent).addFrame(editPanel, "Editar Preguntas");
         }
         
-        /* Se vuelve a la ventana principal de edicion
-        */
-        QuestionEditPanel editPanel;
-        editPanel = new QuestionEditPanel(q);       
-        ((mdiParent)parent).addFrame(editPanel, "Editar Preguntas");
 	}
 	
 	public void CancelClicked(){

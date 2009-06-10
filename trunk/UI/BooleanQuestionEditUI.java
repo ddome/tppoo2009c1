@@ -4,7 +4,8 @@ import javax.swing.*;
 
 import questions.*;
 
-public class BooleanQuestionEditUI extends JPanel implements Editable{
+public class BooleanQuestionEditUI extends JPanel 
+                                        implements Editable, Validable{
 
 	private javax.swing.JPanel jContentPane = null;
 	private JTextField txtQuestion = null;
@@ -45,6 +46,20 @@ public class BooleanQuestionEditUI extends JPanel implements Editable{
                 getScore());
 		return (Question)newQuestion;
 	}
+    
+    public Boolean Validate(){
+        Integer score;
+        try{
+            score = getScore();
+        }
+        catch(NumberFormatException ex){
+            return false;
+        }
+        Boolean resp =  txtQuestion.getText().trim().length() > 0 && 
+                (rbTrue.isSelected() || rbFalse.isSelected());
+        
+        return resp;
+    }
 
 	/**
 	 * This method initializes this
@@ -159,7 +174,7 @@ public class BooleanQuestionEditUI extends JPanel implements Editable{
         return txtScore;
     }
     
-                private int getDifficultyCode(String difficulty){
+    private int getDifficultyCode(String difficulty){
         int code;
         if(difficulty.equals("Facil")){
             code = Question.LEVEL_EASY;
