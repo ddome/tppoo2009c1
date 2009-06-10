@@ -121,14 +121,13 @@ public class QuestionParentPanel extends JPanel {
         else{
             this.remove(questionPanel);
             this.repaint();
-            //this.add(getScoresPanel());
+            this.add(getScoresPanel());
             btnNext.setVisible(false);
         }
-        
-      /*  private JPanel getScoresPanel(){
-            questionPanel = new 
-        }*/
-
 	}
+    private JPanel getScoresPanel(){
+        questionPanel = new GameScorePanel(this.quiz);
+        return questionPanel;
+    }
 	
 }
