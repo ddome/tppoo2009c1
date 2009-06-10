@@ -11,8 +11,11 @@ import java.beans.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import javax.swing.JDesktopPane;
-import javax.swing.SwingUtilities;
+
+import fileHandler.FileParserException;
+
+import player.RankingFileException;
+
 import java.awt.Component;
 import java.awt.Window;
 import questions.*;
@@ -90,7 +93,10 @@ public class mdiParent extends JFrame {
 					                    null,
 					                    possibilities,
 					                    possibilities[0]);
-					level = getDifficultyCode(option);
+					if(option!=null &&  option.length()>0)
+						level = getDifficultyCode(option);
+					else
+						return;
 					
 					userName = (String)JOptionPane.showInputDialog(
 		                    parent,
@@ -100,6 +106,8 @@ public class mdiParent extends JFrame {
 		                    null,
 		                    null,
 		                    null);
+					if(userName==null || userName.length()<0)
+						return;
                     if(userName.trim().length() > 0){
                     	try{
                             ((mdiParent)parent).quiz = ((mdiParent)parent).q.generateQuiz(userName, level);
@@ -108,7 +116,8 @@ public class mdiParent extends JFrame {
                             ((mdiParent)parent).addFrame(p, "Quiz!");
                         }
                         catch(Exception ex){
-                            JOptionPane.showMessageDialog(parent, ex.getMessage());						
+                            JOptionPane.showMessageDialog(parent, ex.getMessage());
+                            ((mdiParent)parent).btnNewGame.setEnabled(false);
                         }	
                     }
                     else{
@@ -153,7 +162,10 @@ public class mdiParent extends JFrame {
                     null,
                     possibilities,
                     possibilities[0]);
-                level = getDifficultyCode(option);
+                if(option!=null &&  option.length()>0)
+                	level = getDifficultyCode(option);
+                else
+                	return;
                 
 				HighScoresPanel p;
                 p = new HighScoresPanel(((mdiParent)parent).q, level);

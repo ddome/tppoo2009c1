@@ -75,7 +75,7 @@ public class SingleChoiceQuestionEditUI extends JPanel
             return false;
         }
         Boolean resp =  txtQuestion.getText().trim().length() > 0 
-                && choicesList.size()> 0 
+                && choicesList.size()> 1
                 && lblAnswer.getText().trim().length() > 0;
         
         return resp;

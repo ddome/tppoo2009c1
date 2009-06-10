@@ -269,7 +269,7 @@ public class Questionnaire {
 				throw new LevelException("Nivel incorrecto");
 		}
 		retTop= new String[top.length+1];
-		for(i=0;i<top.length;i++){
+		for(i=0;i<top.length && top[i]!=null;i++){
 			retTop[i] =Integer.valueOf(top[i].getScore()).toString().concat("  ->  " + top[i].getUser());
 		}
 		
