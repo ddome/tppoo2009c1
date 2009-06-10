@@ -4,7 +4,8 @@ import javax.swing.*;
 
 import questions.*;
 
-public class SimpleTextQuestionEditUI extends JPanel implements Editable{
+public class SimpleTextQuestionEditUI extends JPanel 
+                                            implements Editable, Validable{
 
 	private javax.swing.JPanel jContentPane = null;
 	private JTextField txtQuestion = null;
@@ -49,6 +50,20 @@ public class SimpleTextQuestionEditUI extends JPanel implements Editable{
             return null;
         }		
 	}
+    
+    public Boolean Validate(){
+        Integer score;
+        try{
+            score = getScore();
+        }
+        catch(NumberFormatException ex){
+            return false;
+        }
+        Boolean resp =  txtQuestion.getText().trim().length() > 0 
+                && txtAnswer.getText().trim().length() > 0;
+        
+        return resp;
+    }
 
 	/**
 	 * This method initializes this

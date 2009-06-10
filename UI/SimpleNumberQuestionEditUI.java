@@ -48,6 +48,21 @@ public class SimpleNumberQuestionEditUI extends JPanel implements Editable{
             return null;
         }
 	}
+    
+        public Boolean Validate(){
+        Integer score;
+        try{
+            score = getScore();
+            double answer = Double.valueOf(txtAnswer.getText().trim());
+        }
+        catch(NumberFormatException ex){
+            return false;
+        }        
+        Boolean resp =  txtQuestion.getText().trim().length() > 0 
+                && txtAnswer.getText().trim().length() > 0;
+        
+        return resp;
+    }
 
 	/**
 	 * This method initializes this

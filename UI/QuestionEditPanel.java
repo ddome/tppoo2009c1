@@ -180,6 +180,20 @@ public class QuestionEditPanel extends JPanel {
                 this.elements.addElement(question.getQuestion());
 			}
 		}
+        for(Question question: this.q.getQuestionList(Question.LEVEL_MEDIUM)){
+			if(question!= null){
+				this.questionsText.add(question.getQuestion());	
+				this.questions.add(question);
+                this.elements.addElement(question.getQuestion());
+			}
+		}
+        for(Question question: this.q.getQuestionList(Question.LEVEL_HARD)){
+			if(question!= null){
+				this.questionsText.add(question.getQuestion());	
+				this.questions.add(question);
+                this.elements.addElement(question.getQuestion());
+			}
+		}
 		
 		String[] questionArray = new String[questionsText.size()];
 		questionArray = questionsText.toArray(questionArray);
