@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import questions.*;
 
-public class SimpleTextQuestionEditUI extends JPanel {
+public class SimpleTextQuestionEditUI extends JPanel implements Editable{
 
 	private javax.swing.JPanel jContentPane = null;
 	private JTextField txtQuestion = null;
@@ -35,13 +35,19 @@ public class SimpleTextQuestionEditUI extends JPanel {
 		initialize();
 	}
 	
-	public Question getFinalQuestion(){
+	public Question getEditedQuestion(){
 		SimpleTextQuestion newQuestion;
-		newQuestion = new SimpleTextQuestion(txtQuestion.getText(),
+        
+        try{
+            newQuestion = new SimpleTextQuestion(txtQuestion.getText(),
                 txtAnswer.getText(),
                 getDifficultyCode(cmbLevels.getSelectedItem().toString()),
-                2);
-		return (Question)newQuestion;
+                getScore());
+            return newQuestion;
+        }
+        catch(NumberFormatException ex){
+            return null;
+        }		
 	}
 
 	/**
@@ -164,8 +170,8 @@ public class SimpleTextQuestionEditUI extends JPanel {
         return dif;
     }
     
-    //private int getScore(){
-        //Integer score = Integer.;
-       // if(t)
-   // }
+    private int getScore() throws NumberFormatException{
+        Integer score = Integer.valueOf(txtScore.getText().trim());
+        return score;
+    }
  } 

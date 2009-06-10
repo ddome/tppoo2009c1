@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import questions.*;
 
-public class BooleanQuestionEditUI extends JPanel {
+public class BooleanQuestionEditUI extends JPanel implements Editable{
 
 	private javax.swing.JPanel jContentPane = null;
 	private JTextField txtQuestion = null;
@@ -37,12 +37,12 @@ public class BooleanQuestionEditUI extends JPanel {
 		initialize();
 	}
 	
-	public Question getFinalQuestion(){
+	public Question getEditedQuestion(){
 		BooleanQuestion newQuestion;
 		newQuestion = new BooleanQuestion(getQuestion(), 
                 getAnswer(), 
                 getDifficultyCode(cmbLevels.getSelectedItem().toString()), 
-                1);
+                getScore());
 		return (Question)newQuestion;
 	}
 
@@ -63,6 +63,11 @@ public class BooleanQuestionEditUI extends JPanel {
         this.add(this.getLevelLabel());
         this.add(this.getScoreLabel());
 	}
+    
+    private int getScore() throws NumberFormatException{
+        Integer score = Integer.valueOf(txtScore.getText().trim());
+        return score;
+    }
 	
 	private JTextField getQuestionTextBox(){
 		if(txtQuestion == null){
@@ -107,7 +112,7 @@ public class BooleanQuestionEditUI extends JPanel {
 	}
 	
 	private Boolean getAnswer(){
-		return true;
+		return rbTrue.isSelected();
 	}
     
     private JLabel getLevelLabel(){

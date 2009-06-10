@@ -34,6 +34,8 @@ public class QuestionEditPanel extends JPanel {
 	private Questionnaire q = null;
 	private List<String> questionsText =null;
 	private List<Question> questions = null;
+    
+    private DefaultListModel elements = null;
 	/**
 	 * This is the default constructor
 	 */
@@ -41,6 +43,23 @@ public class QuestionEditPanel extends JPanel {
 		super();
 		this.q = q;
 		initialize();
+	}
+    
+    /**
+	 * This method initializes this
+	 * 
+	 * @return void
+	 */
+	private void initialize() {
+		this.setLayout(null);
+		this.setSize(650,400);
+        elements = new DefaultListModel();
+		this.add(getNewQuestionButton(), null);
+		this.add(this.getQuestionsList(), null);
+		this.add(this.getSelectQuestionLabel());
+		this.add(this.getEditButton());
+		this.add(this.getDeleteButton());
+		this.add(this.getQuestionsListScroll(liQuestions));
 	}
 	
 	private Question getSelectedQuestion(){
@@ -68,12 +87,13 @@ public class QuestionEditPanel extends JPanel {
 					 null);
 			// Si confirmo el borrado
 			if(confirm == JOptionPane.OK_OPTION){
-				q.deleteQuestion(getSelectedQuestion());
-                /*TODO refresh de preguntas*/
+                Question quest = getSelectedQuestion();
+                elements.removeElementAt(selectedIndex);
+                questions.remove(selectedIndex);
+                questionsText.remove(selectedIndex);
+				q.deleteQuestion(quest);               
 			}
 		}
-			
-
 	}
 	
 	public void EditQuestionClicked(){
@@ -98,27 +118,43 @@ public class QuestionEditPanel extends JPanel {
 	public void NewQuestionClicked(){
         Window parent = SwingUtilities.getWindowAncestor((Component)this);
         
+        String option;
+        Object[] possibilities = {"Pregunta de texto simple", 
+            "Pregunta numerica simple", 
+            "Pregunta Verdadero o Falso",
+            "Pregunta con unica opcion correcta",
+            "Pregunta con varias opciones correctas"};                					
+		
+        option = (String)JOptionPane.showInputDialog(
+                parent,
+                "Ingrese el tipo de pregunta",
+                "Nueva Pregunta",
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                possibilities,
+                possibilities[0]);
+        
+        
+        
         QuestionDetailEditPanel editPanel;
-        editPanel = new QuestionDetailEditPanel(q);       
+        editPanel = new QuestionDetailEditPanel(q, option);       
 
         ((mdiParent)parent).addFrame(editPanel, "Nueva Pregunta");
 	}
-	
-	/**
-	 * This method initializes this
-	 * 
-	 * @return void
-	 */
-	private void initialize() {
-		this.setLayout(null);
-		this.setSize(650,400);
-		this.add(getNewQuestionButton(), null);
-		this.add(this.getQuestionsList(), null);
-		this.add(this.getSelectQuestionLabel());
-		this.add(this.getEditButton());
-		this.add(this.getDeleteButton());
-		this.add(this.getQuestionsListScroll(liQuestions));
-	}
+    
+    private int getDifficultyCode(String difficulty){
+        int code;
+        if(difficulty.equals("Facil")){
+            code = Question.LEVEL_EASY;
+        }
+        else if(difficulty.equals("Intermedio")){
+            code = Question.LEVEL_MEDIUM;
+        }
+        else{
+            code = Question.LEVEL_HARD;
+        }
+        return code;
+    }
 	
 	private defaultButton getNewQuestionButton(){
 		if(btnNewQuestion == null){
@@ -141,12 +177,13 @@ public class QuestionEditPanel extends JPanel {
 			if(question!= null){
 				this.questionsText.add(question.getQuestion());	
 				this.questions.add(question);
+                this.elements.addElement(question.getQuestion());
 			}
 		}
 		
 		String[] questionArray = new String[questionsText.size()];
 		questionArray = questionsText.toArray(questionArray);
-		this.liQuestions = new JList(questionArray);
+		this.liQuestions = new JList(elements);        
 		this.liQuestions.setBounds(20, 80, 575, 250);
         this.liQuestions.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.liQuestions.setVisible(true);

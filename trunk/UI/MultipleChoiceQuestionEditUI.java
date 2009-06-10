@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Component;
 
-public class MultipleChoiceQuestionEditUI extends JPanel {
+public class MultipleChoiceQuestionEditUI extends JPanel implements Editable{
 
 	private javax.swing.JPanel jContentPane = null;
 	private JTextField txtQuestion = null;
@@ -89,8 +89,33 @@ public class MultipleChoiceQuestionEditUI extends JPanel {
         this.add(this.getChoicesLabel());
         this.add(this.getAnswersLabel());
 	}
+    
+    public Question getEditedQuestion(){
+		MultipleChoiceQuestion newQuestion;
+        try{
+            String[] choices = new String[choicesList.size()];
+            choices = choicesList.toArray(choices);
+            String[] answers = new String[answersList.size()];
+            answers = answersList.toArray(answers);
+            newQuestion = new MultipleChoiceQuestion(getQuestion(), 
+                    choices,
+                    answers, 
+                    getDifficultyCode(cmbLevels.getSelectedItem().toString()), 
+                    getScore());
+
+            return (Question)newQuestion;
+        }
+        catch(Exception ex){
+            return null;
+        }
+	}
+        
+    private int getScore() throws NumberFormatException{
+        Integer score = Integer.valueOf(txtScore.getText().trim());
+        return score;
+    }
 	
-        public void addClicked(){
+    public void addClicked(){
         String newOption;
         newOption = JOptionPane.showInputDialog(this,
                 "Ingrese la nueva opcion", 
@@ -180,6 +205,7 @@ public class MultipleChoiceQuestionEditUI extends JPanel {
                 }
             }
             liChoices = new JList(elemChoices);
+            liChoices.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             liChoices.setBounds(19, 60, 450, 80);
         }
         return liChoices;
@@ -203,6 +229,7 @@ public class MultipleChoiceQuestionEditUI extends JPanel {
                 }                
             }
             liAnswers = new JList(elemAnswers);
+            liAnswers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             liAnswers.setBounds(19, 170, 450, 80);
             
         }
@@ -349,7 +376,31 @@ public class MultipleChoiceQuestionEditUI extends JPanel {
 		return getQuestionTextBox().getText();
 	}
 	
-/*	private String getAnswer(){
-		return getAnswerTextBox().getText();
-	}*/
+    private int getDifficultyCode(String difficulty){
+        int code;
+        if(difficulty.equals("Facil")){
+            code = Question.LEVEL_EASY;
+        }
+        else if(difficulty.equals("Intermedio")){
+            code = Question.LEVEL_MEDIUM;
+        }
+        else{
+            code = Question.LEVEL_HARD;
+        }
+        return code;
+    }
+    
+    private String getDifficultyName(int code){
+        String dif;
+        if(code == Question.LEVEL_EASY){
+            dif = new String("Facil'");
+        }
+        else if(code == Question.LEVEL_MEDIUM){
+            dif = new String("Intermedio");
+        }
+        else{
+            dif = new String("Dificil");
+        }
+        return dif;
+    }
  } 

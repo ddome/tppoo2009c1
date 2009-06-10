@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Component;
 
-public class SingleChoiceQuestionEditUI extends JPanel {
+public class SingleChoiceQuestionEditUI extends JPanel implements Editable{
 
 	private javax.swing.JPanel jContentPane = null;
 	private JTextField txtQuestion = null;
@@ -47,11 +47,28 @@ public class SingleChoiceQuestionEditUI extends JPanel {
 		initialize();
 	}
 	
-	//public Question getFinalQuestion(){
-		/*SimpleTextQuestion newQuestion;
-		newQuestion = new SimpleTextQuestion(getQuestion(), getAnswer(), 1, 1);
-		return (Question)newQuestion;*/
-	//}
+	public Question getEditedQuestion(){
+		SingleChoiceQuestion newQuestion;
+        try{
+            String[] choices = new String[choicesList.size()];
+            choices = choicesList.toArray(choices);
+            newQuestion = new SingleChoiceQuestion(getQuestion(), 
+                    choices,
+                    getAnswer(), 
+                    getDifficultyCode(cmbLevels.getSelectedItem().toString()), 
+                    getScore());
+
+            return (Question)newQuestion;
+        }
+        catch(Exception ex){
+            return null;
+        }
+	}
+    
+    private int getScore() throws NumberFormatException{
+        Integer score = Integer.valueOf(txtScore.getText().trim());
+        return score;
+    }
     
     public void addClicked(){
         String newOption;
@@ -108,6 +125,10 @@ public class SingleChoiceQuestionEditUI extends JPanel {
         this.add(this.getLevelLabel());
         this.add(this.getScoreLabel());
 	}
+    
+    private String getAnswer(){
+        return lblAnswer.getText();
+    }
 	
 	private JTextField getQuestionTextBox(){
 		if(txtQuestion == null){
@@ -279,9 +300,4 @@ public class SingleChoiceQuestionEditUI extends JPanel {
         }
         return dif;
     }
-    
-	
-/*	private String getAnswer(){
-		return getAnswerTextBox().getText();
-	}*/
  } 

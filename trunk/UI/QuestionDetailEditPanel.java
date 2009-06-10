@@ -22,14 +22,17 @@ public class QuestionDetailEditPanel extends JPanel {
     private Boolean isNewQuestion;    
     private Question question = null;
     private Questionnaire q = null;
+    
+    private String option = null;
 	
 	/**
 	 * Constructor para nueva pregunta
 	 */
-	public QuestionDetailEditPanel(Questionnaire q){
+	public QuestionDetailEditPanel(Questionnaire q, String option){
 		super();
 		this.isNewQuestion = true;
         this.q = q;
+        this.option = option;
 		initialize();
 	}
 	
@@ -47,9 +50,19 @@ public class QuestionDetailEditPanel extends JPanel {
 	
 	public void  SaveChangesClicked(){
         Window parent = SwingUtilities.getWindowAncestor((Component)this);
+        Question editedQuestion = ((Editable)questionPanel).getEditedQuestion();
+        
+        if(isNewQuestion){
+            q.newQuestion(editedQuestion);
+        }
+        else{
+            q.modifyQuestion(question, editedQuestion);
+        }
+        
+        /* Se vuelve a la ventana principal de edicion
+        */
         QuestionEditPanel editPanel;
         editPanel = new QuestionEditPanel(q);       
-        //Guardar pregunta
         ((mdiParent)parent).addFrame(editPanel, "Editar Preguntas");
 	}
 	
@@ -72,7 +85,7 @@ public class QuestionDetailEditPanel extends JPanel {
 		this.add(this.getCancelButton(), null);
 		this.add(this.getSaveChangesButton(), null);
         if(isNewQuestion){
-            
+            this.add(this.getQuestionPanel(option));
         }
         else{
             this.add(this.getQuestionPanel(), null);
@@ -128,4 +141,23 @@ public class QuestionDetailEditPanel extends JPanel {
 		}
 		return questionPanel;
 	}
+    
+    private JPanel getQuestionPanel(String option){
+        if(option.equals("Pregunta de texto simple")){
+			questionPanel = new SimpleTextQuestionEditUI();
+		}
+		if(option.equals("Pregunta numerica simple")){
+			questionPanel = new SimpleNumberQuestionEditUI();
+		}
+		if(option.equals("Pregunta Verdadero o Falso")){
+			questionPanel = new BooleanQuestionEditUI();
+		}
+		if(option.equals("Pregunta con unica opcion correcta")){
+			questionPanel = new SingleChoiceQuestionEditUI();
+		}
+		if(option.equals("Pregunta con varias opciones correctas")){
+			questionPanel = new MultipleChoiceQuestionEditUI();
+		}
+		return questionPanel;
+	}   
 }
