@@ -37,6 +37,11 @@ public class MultipleChoiceQuestion extends ChoiceQuestion{
 			this.answers.add(answer);	
 	}
 	
+	/**
+	 * Devuelve true si todas respuestas dadas eran correctas
+	 * @param answers Las respuestas a verificar
+	 * @return Retorna true si las respuestas eran correctas, false en caso contrario.
+	 */
 	@Override
 	public boolean isCorrect(Object answers) {
 		if( answers instanceof String[] )
@@ -45,6 +50,11 @@ public class MultipleChoiceQuestion extends ChoiceQuestion{
 			return false;
 	}
 	
+	/**
+	 * Devuelve true si todas respuestas dadas eran correctas
+	 * @param answers Las respuestas a verificar
+	 * @return Retorna true si las respuestas eran correctas, false en caso contrario.
+	 */
 	public boolean isCorrect(String answers[]){
 		boolean ret = true;
 		
@@ -59,7 +69,7 @@ public class MultipleChoiceQuestion extends ChoiceQuestion{
 	}
 	
 	/**
-	 * 
+	 * Devuelve un arreglo de tipo String con las respuestas a la pregunta.
 	 * @return Las respuestas de la pregunta
 	 */
 	public String[] getAnswers(){

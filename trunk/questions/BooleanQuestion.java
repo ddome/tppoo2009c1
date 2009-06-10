@@ -24,20 +24,24 @@ public class BooleanQuestion extends Question{
 		this.answer = answer;	
 	}
 	/**
-	 * 
+	 * Setea cual es la respuesta correcta
 	 * @param answer La nueva respuesta
 	 */
 	public void setAnswer(Boolean answer){
 		this.answer = answer;
 	}
 	/**
-	 * 
+	 * Devuelve cual es la respuesta correcta
 	 * @return La respuesta a la pregunta
 	 */
 	public Boolean getAnswer(){
 		return this.answer;
 	}
 	
+	/**
+	 * Devuelve true si la respuesta ingresada es correcta.
+	 * @param answer La respuesta que se quiere ver si es correcta
+	 */
 	@Override
 	public boolean isCorrect(Object answer){
 		if( answer instanceof Boolean )
@@ -46,6 +50,10 @@ public class BooleanQuestion extends Question{
 			return false;
 	}
 	
+	/**
+	 * Devuelve true si la respuesta ingresada es correcta.
+	 * @param answer La respuesta que se quiere ver si es correcta
+	 */
 	public boolean isCorrect(Boolean answer){
 		return this.answer.equals(answer);
 	}

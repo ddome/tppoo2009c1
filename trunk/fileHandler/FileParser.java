@@ -12,19 +12,32 @@ import java.io.IOException;
 
 import questions.*;
 
+/**
+ * Tipo de pregunta con respuesta verdadero o falso.
+ * @author Grupo 4 de Programacion Orientada a Objetos
+ *
+ */
+
 public class FileParser{
 
 	private BufferedReader fileBuffer;
-	
-	public FileParser(File file)throws Exception{
+	/**
+	 * Crea una instancia de FileParser.
+	 * @param Archivo que se desea parsear, de tipo File.
+	 * @throws FileParserException Error al abrir el archivo.
+	 */
+	public FileParser(File file)throws FileParserException{
 		try{
 			fileBuffer = new BufferedReader(new FileReader(file));
-		}catch(FileNotFoundException e){
+		}catch(IOException e){
 			throw new FileParserException("Error al intentar abrir el archivo: "+e.getMessage());
 		}
 	}
-	
-	public void close()throws Exception{
+	/**
+	 * Cierra el archivo abierto al crear la instancia de FileParser.
+	 * @throws FileParserException Error al cerrar el archivo.
+	 */	
+	public void close()throws FileParserException{
 		try{
 			fileBuffer.close();
 		}catch( IOException e){
@@ -32,7 +45,13 @@ public class FileParser{
 		}
 	}
 	
-	public ArrayList<Question> readQuestions() throws Exception{
+	/**
+	 * Crea una instancia de FileParser.
+	 * @return Retorna una lista con las preguntas leidas del archivo.
+	 * @throw FileParserException Error al procesar el archivo. Posiblemente este
+	 * mal formado.
+	 */
+	public ArrayList<Question> readQuestions() throws FileParserException{
 		String line,question=null;
 		Scanner scanner;
 		ArrayList<Question> QuestionList= new ArrayList<Question>();
@@ -45,7 +64,7 @@ public class FileParser{
 				scanner = new Scanner(line);
 				questionType=scanner.nextInt();
 				if(scanner.hasNext())
-					throw new FileParserException("1- Archivo de preguntas mal formado.");
+					throw new FileParserException("Archivo de preguntas mal formado.");
 				scanner.close();
 				while( infoLine<8 && (line=ReadLine())!=null ){
 					scanner = new Scanner(line);
@@ -54,11 +73,11 @@ public class FileParser{
 								break;
 						case 1:	posibleAnswers=scanner.nextInt();
 								if(posibleAnswers < 1)
-									throw new FileParserException("3- Archivo de preguntas mal formado.");
+									throw new FileParserException("Archivo de preguntas mal formado.");
 								break;
 						case 2:	correctAnswers=scanner.nextInt();
 								if(correctAnswers < 1)
-									throw new FileParserException("4- Archivo de preguntas mal formado.");
+									throw new FileParserException("Archivo de preguntas mal formado.");
 								break;
 						case 3:	question=line.trim();
 								break;
@@ -69,25 +88,25 @@ public class FileParser{
 								break;
 						case 5:	line=line.trim();
 								if(!options.contains(line))
-									throw new FileParserException("5- Archivo de preguntas mal formado.");
+									throw new FileParserException("Archivo de preguntas mal formado.");
 								answers.add(line);
 								for(i=1;i<correctAnswers;i++){
 									line=ReadLine().trim();
 									if(!options.contains(line))
-										throw new FileParserException("6- Archivo de preguntas mal formado.");
+										throw new FileParserException("Archivo de preguntas mal formado.");
 									answers.add(line);
 								}
 								break;
 						case 6: score=scanner.nextInt();
 								break;
 						case 7:	if(!line.equals("####"))
-									throw new FileParserException("8- Archivo de preguntas mal formado.");
+									throw new FileParserException("Archivo de preguntas mal formado.");
 								break;
 						default:
-								throw new FileParserException("9- Archivo de preguntas mal formado.");
+								throw new FileParserException("Archivo de preguntas mal formado.");
 					}
 					if((infoLine==0 || infoLine==1 || infoLine==2 || infoLine==6) && scanner.hasNext()){
-						throw new FileParserException("55- Archivo de preguntas mal formado.");
+						throw new FileParserException("Archivo de preguntas mal formado.");
 					}
 					scanner.close();
 					infoLine++;
@@ -95,7 +114,7 @@ public class FileParser{
 				if(infoLine==8 || (infoLine==7 && line==null) )
 					QuestionList.add(BuildQuestion(questionType,question,options,answers,level,score));
 				else
-					throw new FileParserException("55- Archivo de preguntas mal formado.");
+					throw new FileParserException("Archivo de preguntas mal formado.");
 			}
 		}catch(Exception e){
 			throw new FileParserException("Archivo mal formado");
@@ -129,7 +148,7 @@ public class FileParser{
 			case 5: questionRet=BuildBooleanQuestion(question,options,answer,level,score);
 				break;
 			default:
-				throw new FileParserException("11- Archivo de preguntas mal formado.");
+				throw new FileParserException("Archivo de preguntas mal formado.");
 		}
 		
 		return questionRet;
@@ -137,13 +156,13 @@ public class FileParser{
 	
 	private Question BuildSimpleTextQuestion(String question,List<String> options,List<String> answer,int level,int score) throws Exception{
 		if( answer.size()!=1 || options.size()!=1 || score < 0 || level < 0 || level > 2 )
-			throw new FileParserException("12- Archivo de preguntas mal formado.");
+			throw new FileParserException("Archivo de preguntas mal formado.");
 		return new SimpleTextQuestion(question,answer.get(0),level,score);
 	}
 	
 	private Question BuildSimpleNumberQuestion(String question,List<String> options,List<String> answer,int level,int score) throws Exception{
 		if( answer.size()!=1 || options.size()!=1 || score < 0 || level < 0 || level > 2 )
-			throw new FileParserException("13- Archivo de preguntas mal formado.");
+			throw new FileParserException("Archivo de preguntas mal formado.");
 		
 		return new SimpleNumberQuestion(question,Double.valueOf(answer.get(0)),level,score);
 	}
@@ -186,7 +205,7 @@ public class FileParser{
 
 		boolean boolAnswer=false;
 		if( options.size()!=2 || answer.size()!=1 || score < 0 || level < 0 || level > 2 )
-			throw new FileParserException("14- Archivo de preguntas mal formado.");
+			throw new FileParserException("Archivo de preguntas mal formado.");
 		
 		if( !options.get(0).toUpperCase().equals("VERDADERO") && !options.get(1).toUpperCase().equals("VERDADERO") )
 			throw new FileParserException("Archivo mal formado");

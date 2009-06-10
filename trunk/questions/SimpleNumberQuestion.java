@@ -25,20 +25,25 @@ public class SimpleNumberQuestion extends Question {
 	
 	}
 	/**
-	 * 
+	 * Setea la respuesta correspondiente a la pregunta.
 	 * @param answer La nueva respuesta
 	 */
 	public void setAnswer(Number answer){
 		this.answer = answer;
 	}
 	/**
-	 * 
+	 * Devuelve la respuesta correspondiente a la pregunta.
 	 * @return La respuesta asociada
 	 */
 	public Number getAnswer(){
 		return this.answer;
 	}
 	
+	/**
+	 * Devuelve true si la respuesta dada era correcta
+	 * @param answer La respuesta a verificar
+	 * @return Retorna true si la respuesta era correcta, false en caso contrario.
+	 */
 	@Override
 	public boolean isCorrect(Object answer){
 		if( answer instanceof Number  )
@@ -47,6 +52,11 @@ public class SimpleNumberQuestion extends Question {
 			return false;
 	}
 	
+	/**
+	 * Devuelve true si la respuesta dada era correcta
+	 * @param answer La respuesta a verificar
+	 * @return Retorna true si la respuesta era correcta, false en caso contrario.
+	 */
 	public boolean isCorrect(Number answer){
 		return this.answer.equals(truncate(answer));
 	}

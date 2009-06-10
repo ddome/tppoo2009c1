@@ -20,7 +20,7 @@ public abstract class Question{
 	public static final int LEVEL_HARD   = 2;
 	
 	/**
-	 * Mtodo utilizado por las subclases para crear instancias
+	 * Metodo utilizado por las subclases para crear instancias
 	 * 
 	 * @param question La pregunta asociada
 	 * @param level    El nivel de dificultad
@@ -46,14 +46,17 @@ public abstract class Question{
 	public abstract boolean isCorrect(Object answer);
 	
 	/**
-	 * Hashcode de la clase Question.	
+	 * Hashcode de la clase Question.
+	 * @return El hashcode del objeto.
 	 */
 	public int hashCode(){
 		return question.hashCode();
 	}
 	
 	/**
-	 * Equals de la clase Question.	
+	 * Equals de la clase Question.
+	 * @param El objeto a comparar.
+	 * @return true si los dos Question son iguales. false en caso contrario.
 	 */
 	public boolean equals(Object q){
 		if( !(q instanceof Question) )

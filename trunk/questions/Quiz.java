@@ -38,7 +38,7 @@ public class Quiz {
 	}
 	
 	/**
-	 * 
+	 * Retorna la pregunta actual a responder.
 	 * @return La pregunta actual a responder
 	 */
 	public Question getActualQuestion() {
@@ -75,7 +75,8 @@ public class Quiz {
 	}
 	
 	/**
-	 * 
+	 * Devuelve un arreglo de tipo String con todas las preguntas utilizadas durante
+	 * un juego.
 	 * @return La lista de preguntas utilizada
 	 */
 	public String[] getQuestions() {	
@@ -88,7 +89,7 @@ public class Quiz {
 	}
 	
 	/**
-	 * 
+	 * Pregunta si hay mas preguntas en la lista.
 	 * @return Verdadero si hay mas preguntas en la lista, falso caso contrario
 	 */
 	public boolean questionExists() {
@@ -96,7 +97,8 @@ public class Quiz {
 	}
 	
 	/** 
-	 * 
+	 * Retorna una arreglo de tipo boolean con true si la respuesta correspondiente
+	 * a ese indice fue contestada correctamente, false en caso contrario.
 	 * @return La lista que indica que preguntas fuero bien respondidas
 	 */
 	public boolean[] getAnswers() {			
@@ -113,7 +115,7 @@ public class Quiz {
 	}
 	
 	/**
-	 * 
+	 * Devuelve cual es el score total acumulado.
 	 * @return El puntaje acumulado
 	 */
 	public int getScore() {
