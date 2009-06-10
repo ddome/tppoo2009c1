@@ -122,7 +122,7 @@ public class Ranking {
 		}
 	}
 	
-	private void ReadScores() throws Exception{
+	private void ReadScores() throws Exception,RankingFileException{
 		ObjectInputStream rFile;
 		try{
 			rFile = new ObjectInputStream(new FileInputStream(rankingFile));
@@ -136,8 +136,11 @@ public class Ranking {
 		try{
 			
 			while(!exit){
-				level=rFile.readInt();
-				
+				try{
+					level=rFile.readInt();
+				}catch(EOFException e2){
+					return;
+				}
 				switch(level) {
 					case(Question.LEVEL_EASY ):
 						ranking_easy[i] = new Game();
@@ -163,6 +166,8 @@ public class Ranking {
 					rFile.close();
 					throw new RankingFileException("Archivo invalido.");
 				}
+				if(user==null || (level!=Question.LEVEL_EASY && level!=Question.LEVEL_MEDIUM && level!=Question.LEVEL_HARD))
+					throw new RankingFileException("Archivo invalido.");
 				player.setLevel(level);
 				player.setUser(user);
 				player.setScore(score);
@@ -173,6 +178,18 @@ public class Ranking {
 		}finally{
 			rFile.close();
 		}
+	}
+	
+	public Game[] getEasyTop(){
+		return ranking_easy.clone();
+	}
+	
+	public Game[] getMediumTop(){
+		return ranking_medium.clone();
+	}
+	
+	public Game[] getHardTop(){
+		return ranking_hard.clone();
 	}
 	
 }

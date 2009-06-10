@@ -1,5 +1,9 @@
 package player;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 
 /**
  * Contiene informacion a cerca de un juego terminado de un usuario.

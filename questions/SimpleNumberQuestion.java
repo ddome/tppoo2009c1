@@ -71,7 +71,7 @@ public class SimpleNumberQuestion extends Question {
 		outFile.newLine();
 		outFile.write(this.getAnswer().toString());
 		outFile.newLine();
-		outFile.write(this.getScore());
+		outFile.write(Integer.valueOf(this.getScore()).toString());
 		outFile.newLine();
 	}
 }
