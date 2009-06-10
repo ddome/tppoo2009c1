@@ -88,7 +88,7 @@ public class BooleanQuestionEditUI extends JPanel implements Editable{
             rbTrue.setBounds(19, 50, 120, 25);
             buttonGroup.add(rbTrue);
             if(!isNewQuestion){
-                rbTrue.setSelected(!((BooleanQuestion)question).getAnswer());
+                rbTrue.setSelected(((BooleanQuestion)question).getAnswer());
             }            
         }
         return rbTrue;
