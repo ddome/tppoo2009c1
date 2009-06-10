@@ -80,7 +80,7 @@ public class mdiParent extends JFrame {
 					String userName, option;
 					int level;
 					Object[] possibilities = {"Facil", "Intermedio", "Dificil"};
-					// TODO ver que sea una opcion valida, (no cancel) y el nombre tenga al menos un caracter
+					
 					Window parent = SwingUtilities.getWindowAncestor((Component) e.getSource());
 					option = (String)JOptionPane.showInputDialog(
 					                    parent,
@@ -141,10 +141,39 @@ public class mdiParent extends JFrame {
 			btnHighScores.setLocation(20,90);
 			btnHighScores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				HighScoresPanel p = new HighScoresPanel();
+                String option;
+                int level;
+                Object[] possibilities = {"Facil", "Intermedio", "Dificil"};
+                Window parent = SwingUtilities.getWindowAncestor((Component) e.getSource());
+                option = (String)JOptionPane.showInputDialog(
+                    parent,
+                    "Seleccione el nivel cuyos maximos puntajes desea ver:",
+                    "Puntajes",
+                    JOptionPane.INFORMATION_MESSAGE,
+                    null,
+                    possibilities,
+                    possibilities[0]);
+                level = getDifficultyCode(option);
+                
+				HighScoresPanel p;
+                p = new HighScoresPanel(((mdiParent)parent).q, level);
 				p.setSize(650,400);
 				addFrame(p, "Mejores Puntajes");
 			}
+            
+            public int getDifficultyCode(String difficulty){
+                int code;
+                if(difficulty.equals("Facil")){
+                    code = Question.LEVEL_EASY;
+                }
+                else if(difficulty.equals("Intermedio")){
+                    code = Question.LEVEL_MEDIUM;
+                }
+                else{
+                    code = Question.LEVEL_HARD;
+                }
+                return code;
+            }
 		});
 		}
 		return btnHighScores;
