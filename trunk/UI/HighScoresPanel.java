@@ -54,7 +54,7 @@ public class HighScoresPanel extends JPanel {
         for(int i = 0; i < Scores.length; i++){
             lblScore = new JLabel();
             lblScore.setText(Scores[i]);
-            lblScore.setBounds(45,30+i*25,580, 20 );
+            lblScore.setBounds(45,30+i*20,580, 20 );
             this.add(lblScore);
         }
 	}

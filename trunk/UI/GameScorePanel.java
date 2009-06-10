@@ -51,13 +51,13 @@ public class GameScorePanel extends JPanel {
         for(int i = 0; i < questions.length; i++){
             lblQuestion = new JLabel();
             lblQuestion.setText(questions[i]);
-            lblQuestion.setBounds(45,30+i*25,580, 20 );
+            lblQuestion.setBounds(45,30+i*20,580, 20 );
             this.add(lblQuestion);
             
             cbResult = new JCheckBox();
             cbResult.setSelected(results[i]);
             cbResult.setEnabled(false);
-            cbResult.setBounds(15, 30+i*25,20, 20);
+            cbResult.setBounds(15, 30+i*20,20, 20);
             this.add(cbResult);
             
         }
