@@ -110,7 +110,6 @@ public class Questionnaire {
 		}
 		/* Dejo listo el cuestionario para un nuevo juego */
 		Collections.shuffle(list);
-		
 		return new Quiz(user,level,q,rankingFile);			
 	}
 	
@@ -122,7 +121,7 @@ public class Questionnaire {
 		
 		LinkedList<Question> list;
 		Question[] questions;
-		
+
 		switch(level) {
 			case(Question.LEVEL_EASY ):
 				list = easy_questions;
