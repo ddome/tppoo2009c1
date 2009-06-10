@@ -32,7 +32,7 @@ public class SimpleTextQuestionUI extends JPanel {
 		initialize();
 	}
 	public String getAnswer(){
-		return this.txtAnswer.toString();
+		return this.txtAnswer.getText();
 	}
 	/**
 	 * This method initializes this

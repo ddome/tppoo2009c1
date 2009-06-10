@@ -42,7 +42,6 @@ public class SimpleTextQuestion extends Question {
 	
 	@Override
 	public boolean isCorrect(Object answer){
-		System.out.println(answer);
 		if( answer instanceof String ) 
 			return this.answer.toLowerCase().equals(((String)answer).toLowerCase());
 		else
@@ -50,7 +49,6 @@ public class SimpleTextQuestion extends Question {
 	}
 	
 	public boolean isCorrect(String answer){
-		System.out.println(answer);
 		return this.answer.toLowerCase().equals(answer.toLowerCase());
 	}
 	
