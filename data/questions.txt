@@ -1,0 +1,84 @@
+3
+0
+4
+1
+픂n que interseccion de calles se encuentra el obelisco?
+Madero y Corrientes
+Corrientes y 9 de julio
+Santa Fe y Coronel Diaz
+Corrientes y Pueyrredon
+Corrientes y 9 de julio
+5
+####
+1
+0
+1
+1
+픀ual es la capital de Belgica?
+Bruselas
+Bruselas
+3
+####
+2
+0
+1
+1
+픀uantos hijos tiene Homero Simpson?
+3
+3
+2
+####
+5
+0
+2
+1
+La transformada de Fourier de un pulso rectangular es una funcion seno
+Verdadero
+Falso
+Verdadero
+8
+####
+4
+0
+5
+3
+픀uales de los siguientes son animales herbivoros?
+leon
+vaca
+jirafa
+perro
+caballo
+vaca
+jirafa
+caballo
+4
+####
+4
+0
+5
+3
+픀uales de los siguientes son animales herbivoros?
+leon
+vaca
+jirafa
+perro
+caballo
+vaca
+jirafa
+caballo
+4
+####
+4
+0
+5
+3
+픀uales de los siguientes son animales herbivoros?
+leon
+vaca
+jirafa
+perro
+caballo
+vaca
+jirafa
+caballo
+4
