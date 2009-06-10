@@ -70,7 +70,7 @@ public class Game {
 
 	/**
 	 * Setea el nivel en el que jugo el usuario.
-	 * @param score Nivel en el que fue jugado el juego.
+	 * @param level Nivel en el que fue jugado el juego.
 	 */
 	public void setLevel(int level) {
 		this.level = level;

@@ -23,7 +23,7 @@ public class FileParser{
 	private BufferedReader fileBuffer;
 	/**
 	 * Crea una instancia de FileParser.
-	 * @param Archivo que se desea parsear, de tipo File.
+	 * @param file Archivo que se desea parsear, de tipo File.
 	 * @throws FileParserException Error al abrir el archivo.
 	 */
 	public FileParser(File file)throws FileParserException{
@@ -48,7 +48,7 @@ public class FileParser{
 	/**
 	 * Crea una instancia de FileParser.
 	 * @return Retorna una lista con las preguntas leidas del archivo.
-	 * @throw FileParserException Error al procesar el archivo. Posiblemente este
+	 * @throws FileParserException Error al procesar el archivo. Posiblemente este
 	 * mal formado.
 	 */
 	public ArrayList<Question> readQuestions() throws FileParserException{

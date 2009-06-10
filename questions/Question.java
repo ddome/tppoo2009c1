@@ -55,7 +55,7 @@ public abstract class Question{
 	
 	/**
 	 * Equals de la clase Question.
-	 * @param El objeto a comparar.
+	 * @param q El objeto a comparar.
 	 * @return true si los dos Question son iguales. false en caso contrario.
 	 */
 	public boolean equals(Object q){
