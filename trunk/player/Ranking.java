@@ -18,9 +18,9 @@ import java.io.EOFException;
 public class Ranking {
 	private final int MAX_TOP_PLAYERS = 10;
 
-	private Game ranking_easy[] = new Game[MAX_TOP_PLAYERS];
-	private Game ranking_medium[] = new Game[MAX_TOP_PLAYERS];
-	private Game ranking_hard[] = new Game[MAX_TOP_PLAYERS];
+	public Game ranking_easy[] = new Game[MAX_TOP_PLAYERS];
+	public Game ranking_medium[] = new Game[MAX_TOP_PLAYERS];
+	public Game ranking_hard[] = new Game[MAX_TOP_PLAYERS];
 	
 	private File rankingFile;
 	
@@ -33,8 +33,13 @@ public class Ranking {
 	public Ranking(File rankingFile) throws RankingFileException,Exception{
 	
 		this.rankingFile = rankingFile;
-
-		ReadScores();
+		try{
+		    ReadScores();
+		}catch(Exception e){
+			rankingFile.delete();
+			rankingFile.createNewFile();
+			ReadScores();
+		}
 	}
 	
 	/**
@@ -67,7 +72,8 @@ public class Ranking {
 			if( ranking[i]!=null && (ranking[i].getScore() < game.getScore()) ) {
 				aux=game;
 				game=ranking[i];
-				ranking[i]=aux;
+				ranking[i]=new Game(aux.getUser(),aux.getLevel());
+				ranking[i].setScore(aux.getScore());
 			}
 		}
 		
@@ -148,10 +154,12 @@ public class Ranking {
 						i++;
 						break;
 					case(Question.LEVEL_MEDIUM):
+						ranking_medium[j] = new Game();
 						player = ranking_medium[j];
 						j++;
 						break;
 					case(Question.LEVEL_HARD):
+						ranking_hard[k] = new Game();
 						player = ranking_hard[k];
 						k++;
 						break;
@@ -168,9 +176,9 @@ public class Ranking {
 				}
 				if(user==null || (level!=Question.LEVEL_EASY && level!=Question.LEVEL_MEDIUM && level!=Question.LEVEL_HARD))
 					throw new RankingFileException("Archivo invalido.");
-				player.setLevel(level);
-				player.setUser(user);
 				player.setScore(score);
+				player.setUser(user);
+				player.setLevel(level);
 			}
 			
 		}catch(EOFException e){
@@ -193,4 +201,3 @@ public class Ranking {
 	}
 	
 }
-

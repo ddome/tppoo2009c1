@@ -42,7 +42,6 @@ public class Quiz {
 	 * @return La pregunta actual a responder
 	 */
 	public Question getActualQuestion() {
-		
 		if( index < quiz.length )
 			return quiz[index];
 		else
