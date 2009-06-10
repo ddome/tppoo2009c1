@@ -114,7 +114,7 @@ public class MultipleChoiceQuestionEditUI extends JPanel
             return false;
         }
         Boolean resp =  txtQuestion.getText().trim().length() > 0 
-                && choicesList.size()> 1 && answersList.size() > 1;
+                && choicesList.size()> 1 && answersList.size() >= 1;
         
         return resp;
     }
